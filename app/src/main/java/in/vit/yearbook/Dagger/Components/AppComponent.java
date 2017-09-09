@@ -7,7 +7,7 @@ import in.vit.yearbook.Dagger.Modules.SharedPrefModule;
 
 @Component(modules = {SharedPrefModule.class})
 @Singleton
-public class AppComponent {
+public interface AppComponent {
 
 
 }

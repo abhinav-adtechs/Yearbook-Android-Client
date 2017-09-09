@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@color/ybBaseBlue</color>
+    <color name="colorPrimaryDark">#214059</color>
+    <color name="colorAccent">@color/ybBaseYellow</color>
+
+    <color name="ybBaseBlue">#2D5778</color>
+    <color name="ybBaseYellow">#F5BB4B</color>
+
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlackFadedBackground">#4a4a4a</color>
 </resources>
