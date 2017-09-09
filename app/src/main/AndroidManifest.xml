@@ -11,15 +11,14 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".View.Introduction.SplashActivity" >
-
-
-        </activity>
-        <activity android:name=".View.Dashboard.DashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".View.Dashboard.DashboardActivity">
+
         </activity>
 
         <activity android:name=".View.Preview.BookPreviewActivity" />

@@ -48,6 +48,7 @@ public class DashboardActivity extends BaseActivity {
 
         addBooksToList() ;
 
+        rvBooks.smoothScrollToPosition(0);
 
     }
 
