@@ -1,9 +1,11 @@
-package in.vit.yearbook;
+package in.vit.yearbook.View.Dashboard;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import in.vit.yearbook.R;
+import in.vit.yearbook.View.BaseActivity;
+
+public class DashboardView extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
