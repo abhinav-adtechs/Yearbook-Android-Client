@@ -14,7 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.vit.yearbook.R;
 import in.vit.yearbook.View.BaseActivity;
-import in.vit.yearbook.View.Dashboard.DashboardActivity;
+import in.vit.yearbook.View.Dashboard.MainActivity;
 
 public class SplashActivity extends BaseActivity{
 
@@ -41,7 +41,7 @@ public class SplashActivity extends BaseActivity{
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, DashboardActivity.class) ;
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class) ;
                 startActivity(intent);
                 finish();
             }

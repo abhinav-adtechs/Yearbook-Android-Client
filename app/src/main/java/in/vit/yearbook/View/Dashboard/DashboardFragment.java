@@ -1,10 +1,15 @@
 package in.vit.yearbook.View.Dashboard;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +18,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.vit.yearbook.Model.UIModels.DashboardBook;
 import in.vit.yearbook.R;
-import in.vit.yearbook.View.BaseActivity;
 
-public class DashboardActivity extends BaseActivity {
+public class DashboardFragment extends Fragment {
 
 
     @BindView(R.id.activity_dashboard_view_rv_catalog)
@@ -24,21 +28,21 @@ public class DashboardActivity extends BaseActivity {
     List<DashboardBook> dashboardBooks = new ArrayList<>() ;
     DashboardBooksAdapter dashboardBooksAdapter ;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_dashboard_view, container, false) ;
 
-        setContentView(R.layout.activity_dashboard_view);
+        ButterKnife.bind(this, view) ;
+        setInit();
 
-        ButterKnife.bind(this) ;
-
-        setInit() ;
+        return view;
     }
 
     private void setInit() {
 
-        dashboardBooksAdapter = new DashboardBooksAdapter(dashboardBooks, this) ;
-        RecyclerView.LayoutManager layoutManager = new CenterZoomLayoutManager(this.getApplicationContext(),
+        dashboardBooksAdapter = new DashboardBooksAdapter(dashboardBooks, this.getActivity()) ;
+        RecyclerView.LayoutManager layoutManager = new CenterZoomLayoutManager(this.getActivity().getApplicationContext(),
                 LinearLayoutManager.HORIZONTAL, false) ;
         rvBooks.setLayoutManager(layoutManager);
         rvBooks.setAdapter(dashboardBooksAdapter);

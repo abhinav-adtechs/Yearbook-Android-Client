@@ -9,19 +9,22 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".View.Introduction.SplashActivity" >
+        <activity android:name=".View.Introduction.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.Dashboard.DashboardActivity">
-
-        </activity>
-
         <activity android:name=".View.Preview.BookPreviewActivity" />
+        <activity
+            android:name=".View.Dashboard.MainActivity"
+            android:label="@string/title_activity_main"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="in.vit.yearbook.View.BaseActivity" />
+        </activity>
     </application>
 
 </manifest>

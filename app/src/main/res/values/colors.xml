@@ -2,11 +2,14 @@
 <resources>
     <color name="colorPrimary">@color/ybBaseBlue</color>
     <color name="colorPrimaryDark">#214059</color>
+    <color name="colorPrimaryDarker">#263238</color>
     <color name="colorAccent">@color/ybBaseYellow</color>
 
     <color name="ybBaseBlue">#2D5778</color>
     <color name="ybBaseYellow">#F5BB4B</color>
 
     <color name="colorWhite">#ffffff</color>
+    <color name="colorGrey300">#E0E0E0</color>
+    <color name="colorGrey500">#9E9E9E</color>
     <color name="colorBlackFadedBackground">#4a4a4a</color>
 </resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_dashboard" />
+
+    <item
+        android:id="@+id/navigation_team"
+        android:icon="@drawable/ic_group_black_24px"
+        android:title="Team" />
+
+
+    <item
+        android:id="@+id/navigation_about"
+        android:icon="@drawable/ic_info_black_24px"
+        android:title="About" />
+
+</menu>
