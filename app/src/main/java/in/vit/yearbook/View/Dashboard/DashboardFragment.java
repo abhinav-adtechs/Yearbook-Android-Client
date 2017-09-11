@@ -1,12 +1,15 @@
 package in.vit.yearbook.View.Dashboard;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +42,12 @@ public class DashboardFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i("TAG", "onResume: ");
+    }
+
     private void setInit() {
 
         dashboardBooksAdapter = new DashboardBooksAdapter(dashboardBooks, this.getActivity()) ;
@@ -52,7 +61,19 @@ public class DashboardFragment extends Fragment {
 
         addBooksToList() ;
 
-        rvBooks.smoothScrollToPosition(0);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                rvBooks.smoothScrollToPosition(0);
+            }
+        }, 20) ;
+
+
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
     }
 

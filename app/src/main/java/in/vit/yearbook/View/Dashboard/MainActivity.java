@@ -86,6 +86,7 @@ public class MainActivity extends BaseActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .add(R.id.activity_main_framelayout, currentFragment)
+                .setCustomAnimations(R.anim.fade_in_slow, R.anim.fade_out_slow)
                 .commit();
 
     }
