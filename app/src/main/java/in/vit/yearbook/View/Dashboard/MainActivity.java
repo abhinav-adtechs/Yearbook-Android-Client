@@ -32,6 +32,7 @@ public class MainActivity extends BaseActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.activity_main_bottom_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         setSupportActionBar(toolbarMain);
+        getSupportActionBar().setTitle("");
 
 
         currentFragment = new DashboardFragment() ;
@@ -46,15 +47,18 @@ public class MainActivity extends BaseActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_dashboard:
                     nextFragment = new DashboardFragment() ;
+                    makeFragmentTransaction(nextFragment) ;
                     return true;
                 case R.id.navigation_team:
                     nextFragment = new TeamFragment() ;
+                    makeFragmentTransaction(nextFragment) ;
                     return true;
                 case R.id.navigation_about:
                     nextFragment = new AboutFragment() ;
+                    makeFragmentTransaction(nextFragment) ;
                     return true;
             }
-            makeFragmentTransaction(nextFragment) ;
+
 
             return false;
 

@@ -18,7 +18,7 @@
             android:layout_height="70dp"
             android:elevation="3dp"
             android:alpha="0.9"
-            android:background="@color/ybBaseYellow"
+            android:background="@color/ybBaseBlue"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

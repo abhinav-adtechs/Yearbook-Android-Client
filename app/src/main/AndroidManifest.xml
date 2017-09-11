@@ -21,9 +21,6 @@
             android:name=".View.Dashboard.MainActivity"
             android:label="@string/title_activity_main"
             >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="in.vit.yearbook.View.BaseActivity" />
         </activity>
     </application>
 

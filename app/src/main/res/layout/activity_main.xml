@@ -46,6 +46,10 @@
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/activity_main_bottom_navigation"
+        app:itemTextColor="@color/colorWhite"
+        app:itemBackground="@color/ybBaseBlue"
+        app:itemIconTint="@color/colorWhite"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
