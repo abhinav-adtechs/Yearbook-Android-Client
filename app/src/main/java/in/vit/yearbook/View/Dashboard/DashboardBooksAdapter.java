@@ -19,10 +19,16 @@ public class DashboardBooksAdapter extends RecyclerView.Adapter<DashboardBooksAd
 
     private List<DashboardBook> dashboardBooks ;
     private Context context ;
+    private OnItemClickListener onItemClickListener;
 
-    public DashboardBooksAdapter(List<DashboardBook> dashboardBooks, Context context) {
+    public interface OnItemClickListener{
+        void OnItemClick(int position) ;
+    }
+
+    public DashboardBooksAdapter(List<DashboardBook> dashboardBooks, Context context, OnItemClickListener onItemClickListener) {
         this.dashboardBooks = dashboardBooks;
         this.context = context ;
+        this.onItemClickListener = onItemClickListener ;
     }
 
     @Override
@@ -37,6 +43,7 @@ public class DashboardBooksAdapter extends RecyclerView.Adapter<DashboardBooksAd
 
         holder.bookTitle.setText(dashboardBooks.get(position).getBookTitle());
         holder.ivBookThumbnail.setBackground(context.getResources().getDrawable(bookThumbnails[position]));
+        holder.bindListener(position);
     }
 
     @Override
@@ -56,6 +63,15 @@ public class DashboardBooksAdapter extends RecyclerView.Adapter<DashboardBooksAd
             ivBookThumbnail = (ImageView) itemView.findViewById(R.id.item_books_rv_thumbnail) ;
 
         }
+
+        public void bindListener(final int position){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.OnItemClick(position);
+                }
+            });
+        }
     }
 
 
@@ -64,5 +80,6 @@ public class DashboardBooksAdapter extends RecyclerView.Adapter<DashboardBooksAd
             R.drawable.yb2017_cover,
             R.drawable.yb2017_cover,
             R.drawable.yb2017_cover,
+            R.drawable.yb2017_cover
     };
 }

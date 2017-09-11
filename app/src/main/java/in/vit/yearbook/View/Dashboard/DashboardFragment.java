@@ -21,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.vit.yearbook.Model.UIModels.DashboardBook;
 import in.vit.yearbook.R;
+import in.vit.yearbook.View.Preview.BookPreviewActivity;
 
 public class DashboardFragment extends Fragment {
 
@@ -50,7 +51,12 @@ public class DashboardFragment extends Fragment {
 
     private void setInit() {
 
-        dashboardBooksAdapter = new DashboardBooksAdapter(dashboardBooks, this.getActivity()) ;
+        dashboardBooksAdapter = new DashboardBooksAdapter(dashboardBooks, this.getActivity(), new DashboardBooksAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(int position) {
+                handleBookPreviewClick(position) ;
+            }
+        }) ;
         RecyclerView.LayoutManager layoutManager = new CenterZoomLayoutManager(this.getActivity().getApplicationContext(),
                 LinearLayoutManager.HORIZONTAL, false) ;
         rvBooks.setLayoutManager(layoutManager);
@@ -64,7 +70,7 @@ public class DashboardFragment extends Fragment {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                rvBooks.smoothScrollToPosition(0);
+                rvBooks.smoothScrollToPosition(1);
             }
         }, 20) ;
 
@@ -79,11 +85,18 @@ public class DashboardFragment extends Fragment {
 
     private void addBooksToList() {
 
+        dashboardBooks.add(new DashboardBook(2018, "Class of 2018"));
         dashboardBooks.add(new DashboardBook(2017, "Class of 2017"));
         dashboardBooks.add(new DashboardBook(2016, "Class of 2016"));
         dashboardBooks.add(new DashboardBook(2015, "Class of 2015"));
         dashboardBooks.add(new DashboardBook(2014, "Class of 2014"));
 
         dashboardBooksAdapter.notifyDataSetChanged();
+    }
+
+    private void handleBookPreviewClick(int position) {
+
+        Intent intent = new Intent(this.getActivity(), BookPreviewActivity.class) ;
+        startActivity(intent);
     }
 }

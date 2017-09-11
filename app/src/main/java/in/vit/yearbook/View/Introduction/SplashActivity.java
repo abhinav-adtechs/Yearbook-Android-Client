@@ -66,7 +66,7 @@ public class SplashActivity extends BaseActivity{
             public void run() {
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class) ;
                 ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation(splashActivity, (View)ivYearbook, "yb_logo");
+                        makeSceneTransitionAnimation(splashActivity, ivYearbook, "yb_logo");
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     getWindow().setSharedElementEnterTransition(new ChangeBounds().setDuration(4000));
                 }
@@ -77,9 +77,6 @@ public class SplashActivity extends BaseActivity{
     }
 
     private void init() {
-        //tvYearbook.setVisibility(View.INVISIBLE);
-        //ivYearbook.setVisibility(View.INVISIBLE);
-        //tvRewind.setVisibility(View.INVISIBLE);
 
         Animation fadeIn = new AlphaAnimation(0, 1);
         fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
