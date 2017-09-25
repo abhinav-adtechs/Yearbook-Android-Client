@@ -1,4 +1,4 @@
-package in.vit.yearbook.View.Team;
+package in.vit.yearbook.View.OldUI.Team;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

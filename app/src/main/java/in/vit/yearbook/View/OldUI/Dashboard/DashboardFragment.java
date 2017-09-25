@@ -1,4 +1,4 @@
-package in.vit.yearbook.View.Dashboard;
+package in.vit.yearbook.View.OldUI.Dashboard;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.vit.yearbook.Model.UIModels.DashboardBook;
 import in.vit.yearbook.R;
-import in.vit.yearbook.View.Preview.BookPreviewActivity;
+import in.vit.yearbook.View.OldUI.Preview.BookPreviewActivity;
 
 public class DashboardFragment extends Fragment {
 

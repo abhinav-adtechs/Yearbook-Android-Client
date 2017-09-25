@@ -1,4 +1,4 @@
-package in.vit.yearbook.View;
+package in.vit.yearbook.View.OldUI;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

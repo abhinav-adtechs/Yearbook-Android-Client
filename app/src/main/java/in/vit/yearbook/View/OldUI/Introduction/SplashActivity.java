@@ -1,4 +1,4 @@
-package in.vit.yearbook.View.Introduction;
+package in.vit.yearbook.View.OldUI.Introduction;
 
 
 import android.content.Intent;
@@ -7,10 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.transition.ChangeBounds;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
@@ -22,8 +19,8 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.vit.yearbook.R;
-import in.vit.yearbook.View.BaseActivity;
-import in.vit.yearbook.View.Dashboard.MainActivity;
+import in.vit.yearbook.View.OldUI.BaseActivity;
+import in.vit.yearbook.View.OldUI.Dashboard.MainActivity;
 
 public class SplashActivity extends BaseActivity{
 

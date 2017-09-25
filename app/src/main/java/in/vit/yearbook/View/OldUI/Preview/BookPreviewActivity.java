@@ -1,4 +1,4 @@
-package in.vit.yearbook.View.Preview;
+package in.vit.yearbook.View.OldUI.Preview;
 
 
 import android.content.res.Configuration;
@@ -10,7 +10,7 @@ import com.github.barteksc.pdfviewer.PDFView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.vit.yearbook.R;
-import in.vit.yearbook.View.BaseActivity;
+import in.vit.yearbook.View.OldUI.BaseActivity;
 
 public class BookPreviewActivity extends BaseActivity{
 

@@ -1,8 +1,7 @@
-package in.vit.yearbook.View.Introduction;
+package in.vit.yearbook.View.OldUI.Introduction;
 
 
 import android.content.Context;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +14,6 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 import in.vit.yearbook.R;
 

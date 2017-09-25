@@ -1,4 +1,4 @@
-package in.vit.yearbook.View.Dashboard;
+package in.vit.yearbook.View.OldUI.Dashboard;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,9 +10,9 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.vit.yearbook.R;
-import in.vit.yearbook.View.About.AboutFragment;
-import in.vit.yearbook.View.BaseActivity;
-import in.vit.yearbook.View.Team.TeamFragment;
+import in.vit.yearbook.View.OldUI.About.AboutFragment;
+import in.vit.yearbook.View.OldUI.BaseActivity;
+import in.vit.yearbook.View.OldUI.Team.TeamFragment;
 
 public class MainActivity extends BaseActivity {
 

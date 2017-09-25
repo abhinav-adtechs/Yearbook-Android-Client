@@ -9,16 +9,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.Introduction.SplashActivity">
+        <activity android:name=".View.OldUI.Introduction.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.Preview.BookPreviewActivity" />
+        <activity android:name=".View.OldUI.Preview.BookPreviewActivity" />
         <activity
-            android:name=".View.Dashboard.MainActivity"
+            android:name=".View.OldUI.Dashboard.MainActivity"
             android:label="@string/title_activity_main"
             >
         </activity>
