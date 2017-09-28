@@ -66,13 +66,13 @@
         </View>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/new_fragment_dashboard_iv_cover"
         android:layout_width="200dp"
         android:layout_height="250dp"
         app:srcCompat="@drawable/yb2017_cover"
         android:background="@drawable/rectangle_flat_views"
         android:padding="8dp"
-
+        android:clickable="true"
         app:layout_constraintTop_toTopOf="@+id/new_fragment_dashboard_view"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/new_fragment_dashboard_view"
@@ -88,6 +88,7 @@
 
     <FrameLayout
         android:id="@+id/new_fragment_dashboard_frame_download"
+        android:clickable="true"
         android:background="@drawable/rectangle_flat_views"
         android:layout_width="100dp"
         android:layout_height="100dp"
