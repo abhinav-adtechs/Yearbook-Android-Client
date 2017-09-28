@@ -42,20 +42,21 @@
     <FrameLayout
         android:id="@+id/new_fragment_dashboard_frame_layout"
         android:layout_width="0dp"
-        android:layout_height="400dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:alpha="0.1"
         android:background="@color/colorWhite"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/solid_white_up"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp" />
+        app:layout_constraintVertical_bias="0.494" />
 
 </android.support.constraint.ConstraintLayout>
