@@ -7,12 +7,13 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
+        android:layout_margin="7dp"
         android:id="@+id/new_activity_main_toolbar_main"
         android:minHeight="?attr/actionBarSize"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:elevation="7dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/rounded_border_action_bar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent">

@@ -43,8 +43,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         setContentView(R.layout.new_activity_main);
 
         ButterKnife.bind(this) ;
-        setSupportActionBar(toolbarMain);
-        getSupportActionBar().setTitle("");
+        //setSupportActionBar(toolbarMain);
+        //getSupportActionBar().setTitle("");
 
         currentFragment = new DashboardFragment() ;
         addFragmentTransaction(currentFragment);
