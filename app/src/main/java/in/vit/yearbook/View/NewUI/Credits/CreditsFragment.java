@@ -1,4 +1,4 @@
-package in.vit.yearbook.View.NewUI;
+package in.vit.yearbook.View.NewUI.Credits;
 
 
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import in.vit.yearbook.R;
+import in.vit.yearbook.View.NewUI.BaseFragment;
 
 public class CreditsFragment extends BaseFragment {
 

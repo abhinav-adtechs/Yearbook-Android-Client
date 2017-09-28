@@ -1,4 +1,4 @@
-package in.vit.yearbook.View.NewUI;
+package in.vit.yearbook.View.NewUI.Team;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import in.vit.yearbook.R;
+import in.vit.yearbook.View.NewUI.BaseFragment;
 
 public class TeamFragment extends BaseFragment {
 

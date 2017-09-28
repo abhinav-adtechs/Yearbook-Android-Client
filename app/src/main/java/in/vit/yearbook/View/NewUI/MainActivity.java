@@ -13,6 +13,9 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.vit.yearbook.R;
+import in.vit.yearbook.View.NewUI.Credits.CreditsFragment;
+import in.vit.yearbook.View.NewUI.Dashboard.DashboardFragment;
+import in.vit.yearbook.View.NewUI.Team.TeamFragment;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener{
 
@@ -60,7 +63,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .add(R.id.new_activity_main_fragment_frame, currentFragment)
-                .setCustomAnimations(R.anim.fade_in_slow, R.anim.fade_out_slow)
                 .commit();
 
     }
@@ -70,8 +72,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         if (nextFragment != null && currentFragment.getClass() != nextFragment.getClass()){
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.new_activity_main_fragment_frame, nextFragment)
                     .setCustomAnimations(R.anim.fade_in_slow, R.anim.fade_out_slow)
+                    .replace(R.id.new_activity_main_fragment_frame, nextFragment)
                     .commit();
 
             currentFragment = nextFragment ;
