@@ -21,6 +21,10 @@
 
         <activity android:name=".View.NewUI.MainActivity">
         </activity>
+
+        <activity android:name=".View.NewUI.TestingActivity" >
+
+        </activity>
     </application>
 
 </manifest>
