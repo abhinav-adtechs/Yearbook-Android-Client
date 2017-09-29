@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/colorBlueMain</color>
-    <color name="colorPrimaryDark">#214059</color>
+    <color name="colorPrimary">@color/colorGrey900</color>
+    <color name="colorPrimaryDark">#000000</color>
     <color name="colorPrimaryDarker">#263238</color>
     <color name="colorAccent">@color/ybBaseYellow</color>
 
@@ -9,9 +9,12 @@
     <color name="ybBaseYellow">#F5BB4B</color>
 
     <color name="colorBlueMain">#051C2A</color>
+    <color name="colorBlueDarker">#214059</color>
 
     <color name="colorWhite">#ffffff</color>
     <color name="colorGrey300">#E0E0E0</color>
     <color name="colorGrey500">#9E9E9E</color>
+    <color name="colorGrey800">#424242</color>
+    <color name="colorGrey900">#212121</color>
     <color name="colorBlackFadedBackground">#4a4a4a</color>
 </resources>

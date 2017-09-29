@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import in.vit.yearbook.Model.Utils.Constants;
 import in.vit.yearbook.R;
 import in.vit.yearbook.View.NewUI.Credits.CreditsFragment;
 import in.vit.yearbook.View.NewUI.Dashboard.DashboardFragment;
@@ -43,6 +44,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private android.support.v4.app.Fragment currentFragment = null ;
     private android.support.v4.app.Fragment nextFragment = null ;
 
+    private Integer currentState = Constants.STATE_DASHBOARD ;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +71,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 .add(R.id.new_activity_main_fragment_frame, currentFragment)
                 .commit();
 
+        scaleUpDashboard();
     }
 
     private void makeFragmentTransaction(android.support.v4.app.Fragment nextFragment, String title) {
@@ -108,36 +112,105 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             case R.id.new_activity_main_tab_team :
                 nextFragment = new TeamFragment() ;
                 makeFragmentTransaction(nextFragment, "Team") ;
+                if (currentState == Constants.STATE_CREDITS){
+                    scaleDownCredits();
+                }
+                else if (currentState == Constants.STATE_DASHBOARD){
+                    scaleDownDashboard();
+                }
+
+                scaleUpTeam();
                 break;
 
             case R.id.new_activity_main_tab_dashboard :
                 nextFragment = new DashboardFragment() ;
                 makeFragmentTransaction(nextFragment, "Dashboard") ;
+                if (currentState == Constants.STATE_CREDITS){
+                    scaleDownCredits();
+                }
+                else if (currentState == Constants.STATE_TEAM){
+                    scaleDownTeam();
+                }
+
+                scaleUpDashboard();
                 break;
 
             case R.id.new_activity_main_tab_info :
                 nextFragment = new CreditsFragment() ;
                 makeFragmentTransaction(nextFragment, "Credits") ;
+                if (currentState == Constants.STATE_TEAM){
+                    scaleDownTeam();
+                }
+                else if (currentState == Constants.STATE_DASHBOARD){
+                    scaleDownDashboard();
+                }
+
                 scaleUpCredits() ;
                 break;
         }
     }
 
     private void scaleUpCredits() {
+        ibTabCredits.setImageDrawable(getResources().getDrawable(R.drawable.ic_info_white_24px));
         ScaleAnimation anim = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f, Animation.RELATIVE_TO_SELF,1.0f, Animation.RELATIVE_TO_SELF, 0.5f);
         anim.setFillEnabled(true);
         anim.setFillAfter(true);
         anim.setDuration(200);
         ibTabCredits.startAnimation(anim);
         ibTabCredits.setClickable(false);
+        currentState = Constants.STATE_CREDITS ;
     }
 
     private void scaleDownCredits() {
+        ibTabCredits.setImageDrawable(getResources().getDrawable(R.drawable.ic_info_outline_white_24px));
         ScaleAnimation anim = new ScaleAnimation(1.2f, 1.0f, 1.2f, 1.0f, Animation.RELATIVE_TO_SELF,1.0f, Animation.RELATIVE_TO_SELF, 0.5f);
         anim.setFillEnabled(true);
         anim.setFillAfter(true);
         anim.setDuration(200);
         ibTabCredits.startAnimation(anim);
+        ibTabCredits.setClickable(true);
+    }
+
+    private void scaleUpDashboard() {
+        ibTabDashboard.setImageDrawable(getResources().getDrawable(R.drawable.ic_dashboard_white_24px));
+        ScaleAnimation anim = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setFillEnabled(true);
+        anim.setFillAfter(true);
+        anim.setDuration(200);
+        ibTabDashboard.startAnimation(anim);
+        ibTabDashboard.setClickable(false);
+        currentState = Constants.STATE_DASHBOARD ;
+    }
+
+    private void scaleDownDashboard() {
+        ibTabDashboard.setImageDrawable(getResources().getDrawable(R.drawable.ic_dashboard_white_24px));
+        ScaleAnimation anim = new ScaleAnimation(1.2f, 1.0f, 1.2f, 1.0f, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setFillEnabled(true);
+        anim.setFillAfter(true);
+        anim.setDuration(200);
+        ibTabDashboard.startAnimation(anim);
+        ibTabDashboard.setClickable(true);
+    }
+
+    private void scaleUpTeam() {
+        ibTabTeam.setImageDrawable(getResources().getDrawable(R.drawable.ic_group_black_24px));
+        ScaleAnimation anim = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f, Animation.RELATIVE_TO_SELF,0.0f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setFillEnabled(true);
+        anim.setFillAfter(true);
+        anim.setDuration(200);
+        ibTabTeam.startAnimation(anim);
+        ibTabTeam.setClickable(false);
+        currentState = Constants.STATE_TEAM ;
+    }
+
+    private void scaleDownTeam() {
+        ibTabTeam.setImageDrawable(getResources().getDrawable(R.drawable.ic_people_outline_white_24px));
+        ScaleAnimation anim = new ScaleAnimation(1.2f, 1.0f, 1.2f, 1.0f, Animation.RELATIVE_TO_SELF,0.0f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setFillEnabled(true);
+        anim.setFillAfter(true);
+        anim.setDuration(200);
+        ibTabTeam.startAnimation(anim);
+        ibTabTeam.setClickable(true);
     }
 
 }
