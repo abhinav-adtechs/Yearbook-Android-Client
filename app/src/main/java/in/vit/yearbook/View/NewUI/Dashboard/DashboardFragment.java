@@ -12,6 +12,8 @@ import android.view.animation.ScaleAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.airbnb.lottie.LottieAnimationView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.vit.yearbook.R;
@@ -26,6 +28,9 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     @BindView(R.id.new_fragment_dashboard_iv_cover)
     ImageView ivCoverPhoto ;
 
+    @BindView(R.id.new_fragment_dashboard_top_animation)
+    LottieAnimationView lottieAnimationView ;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,6 +39,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         addFragmentTransaction(new DownloadPreviewFragment());
         frameDownload.setOnClickListener(this);
         ivCoverPhoto.setOnClickListener(this);
+        lottieAnimationView.setImageAssetsFolder("images");
         return view ;
     }
 
@@ -61,14 +67,14 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 ScaleAnimation anim = new ScaleAnimation(1.0f, 2.0f, 1.0f, 2.0f, Animation.RELATIVE_TO_SELF,1.0f, Animation.RELATIVE_TO_SELF, 0.5f);
                 anim.setFillEnabled(true);
                 anim.setFillAfter(true);
-                anim.setDuration(700);
+                anim.setDuration(400);
                 frameDownload.startAnimation(anim);
                 frameDownload.setClickable(false);
 
                 ScaleAnimation anim2 = new ScaleAnimation(1.0f, 0.5f, 1.0f, 0.5f, Animation.RELATIVE_TO_SELF,0.1f, Animation.RELATIVE_TO_SELF, 0.5f);
                 anim2.setFillEnabled(true);
                 anim2.setFillAfter(true);
-                anim2.setDuration(700);
+                anim2.setDuration(400);
                 ivCoverPhoto.startAnimation(anim2);
                 ivCoverPhoto.setClickable(true);
 
@@ -79,14 +85,14 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 ScaleAnimation anim3 = new ScaleAnimation(2.0f, 1.0f, 2.0f, 1.0f, Animation.RELATIVE_TO_SELF,1.0f, Animation.RELATIVE_TO_SELF, 0.5f);
                 anim3.setFillEnabled(true);
                 anim3.setFillAfter(true);
-                anim3.setDuration(700);
+                anim3.setDuration(400);
                 frameDownload.startAnimation(anim3);
                 frameDownload.setClickable(true);
 
                 ScaleAnimation anim4 = new ScaleAnimation(0.5f, 1.0f, 0.5f, 1.0f, Animation.RELATIVE_TO_SELF,0.1f, Animation.RELATIVE_TO_SELF, 0.5f);
                 anim4.setFillEnabled(true);
                 anim4.setFillAfter(true);
-                anim4.setDuration(700);
+                anim4.setDuration(400);
                 ivCoverPhoto.startAnimation(anim4);
                 ivCoverPhoto.setClickable(false);
 

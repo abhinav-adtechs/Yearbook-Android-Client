@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -70,6 +73,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private void makeFragmentTransaction(android.support.v4.app.Fragment nextFragment, String title) {
 
         if (nextFragment != null && currentFragment.getClass() != nextFragment.getClass()){
+            Log.i("TAG", "makeFragmentTransaction: "+ currentFragment.getClass());
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.fade_in_slow, R.anim.fade_out_slow)
@@ -114,7 +118,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
             case R.id.new_activity_main_tab_info :
                 nextFragment = new CreditsFragment() ;
                 makeFragmentTransaction(nextFragment, "Credits") ;
+                scaleUpCredits() ;
                 break;
         }
     }
+
+    private void scaleUpCredits() {
+        ScaleAnimation anim = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f, Animation.RELATIVE_TO_SELF,1.0f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setFillEnabled(true);
+        anim.setFillAfter(true);
+        anim.setDuration(200);
+        ibTabCredits.startAnimation(anim);
+        ibTabCredits.setClickable(false);
+    }
+
+    private void scaleDownCredits() {
+        ScaleAnimation anim = new ScaleAnimation(1.2f, 1.0f, 1.2f, 1.0f, Animation.RELATIVE_TO_SELF,1.0f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setFillEnabled(true);
+        anim.setFillAfter(true);
+        anim.setDuration(200);
+        ibTabCredits.startAnimation(anim);
+    }
+
 }
