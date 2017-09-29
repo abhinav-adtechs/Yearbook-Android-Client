@@ -3,6 +3,7 @@ package in.vit.yearbook.View.NewUI;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -24,7 +25,7 @@ import in.vit.yearbook.View.NewUI.Team.TeamFragment;
 public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     @BindView(R.id.new_activity_main_toolbar_main)
-    Toolbar toolbarMain ;
+    ConstraintLayout toolbarMain ;
 
     @BindView(R.id.new_activity_main_fragment_title)
     TextView fragmentTitle ;
@@ -173,6 +174,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     private void scaleUpDashboard() {
         ibTabDashboard.setImageDrawable(getResources().getDrawable(R.drawable.ic_dashboard_white_24px));
+        ibTabDashboard.setAlpha(1.0f);
         ScaleAnimation anim = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         anim.setFillEnabled(true);
         anim.setFillAfter(true);
@@ -184,6 +186,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     private void scaleDownDashboard() {
         ibTabDashboard.setImageDrawable(getResources().getDrawable(R.drawable.ic_dashboard_white_24px));
+        ibTabDashboard.setAlpha(0.5f);
         ScaleAnimation anim = new ScaleAnimation(1.2f, 1.0f, 1.2f, 1.0f, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         anim.setFillEnabled(true);
         anim.setFillAfter(true);
