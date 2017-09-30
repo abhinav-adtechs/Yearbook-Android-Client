@@ -62,14 +62,14 @@ public class DownloadDashFragment extends BaseFragment implements View.OnClickLi
         switch (view.getId()){
             case R.id.new_fragment_downloading_dash_btn_downloading :
 
-                BookDownloadingListener bookDownloadingListener = new BookDownloadingListener() ;
+                /*BookDownloadingListener bookDownloadingListener = new BookDownloadingListener() ;
                 FileDownloader.getImpl().create(Constants.BASE_URL + Constants.URL_BOOK_2017)
                         .setPath(Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/2017.pdf")
                         .setListener(bookDownloadingListener)
                         .asInQueueTask()
                         .enqueue() ;
 
-                FileDownloader.getImpl().start(bookDownloadingListener, true) ;
+                FileDownloader.getImpl().start(bookDownloadingListener, true) ;*/
                 break;
         }
     }

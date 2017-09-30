@@ -1,12 +1,16 @@
 package in.vit.yearbook.View.NewUI.Dashboard;
 
 import android.Manifest;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,8 +24,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.liulishuo.filedownloader.FileDownloader;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import in.vit.yearbook.Model.UIModels.BookDownloadingListener;
+import in.vit.yearbook.Model.Utils.Constants;
 import in.vit.yearbook.R;
 import in.vit.yearbook.View.NewUI.BaseFragment;
 
@@ -43,9 +51,13 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     @BindView(R.id.new_fragment_dashboard_tv_size)
     TextView tvDownloadSize ;
 
+    private boolean downloadingState = false ;
     private boolean showStateSelected = false ;
     private static final int EXTERNAL_STORAGE_PERMISSION_CONSTANT = 101;
+    private BookDownloadingListener bookDownloadingListener ;
 
+    private NotificationManager notificationManager ;
+    private NotificationCompat.Builder notificationBuilder ;
 
     @Nullable
     @Override
@@ -105,7 +117,10 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                         getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, EXTERNAL_STORAGE_PERMISSION_CONSTANT);
                 }else {
-                    startDownloading() ;
+                    if (!downloadingState)
+                        startDownloading() ;
+                    else
+                        pauseDownloading() ;
                 }
                 break;
 
@@ -157,10 +172,40 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         }
     }
 
+
+
+
+
     private void startDownloading() {
 
+        FileDownloader.setup(this.getActivity());
+        downloadingState = true ;
+
+        Log.i("TAG", "getExistingState: " + FileDownloader.getImpl().getStatus(Constants.BASE_URL + Constants.URL_BOOK_2017,
+                        Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/2017.pdf"));
+
+        notificationManager =
+                (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationBuilder = new NotificationCompat.Builder(getActivity());
+        notificationBuilder.setContentTitle("YB2017 Downloading")
+                .setContentText("Download in progress")
+                .setSmallIcon(R.mipmap.yearbook_logo);
 
 
+        bookDownloadingListener = new BookDownloadingListener(notificationManager, notificationBuilder) ;
+        FileDownloader.getImpl().create(Constants.BASE_URL + Constants.URL_BOOK_2017)
+                .setPath(Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/2017.pdf")
+                .setListener(bookDownloadingListener)
+                .asInQueueTask()
+                .enqueue() ;
+        FileDownloader.getImpl().start(bookDownloadingListener, true) ;
     }
+
+    private void pauseDownloading() {
+        FileDownloader.setup(this.getActivity());
+        FileDownloader.getImpl().pause(bookDownloadingListener) ;
+    }
+
+
 
 }
