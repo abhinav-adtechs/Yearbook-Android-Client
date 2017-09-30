@@ -122,7 +122,6 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
         switch (year){
             case 2017:
                 teamMembersList = Arrays.asList(getResources().getStringArray(R.array.yb2017_team_design)) ;
-                Log.i("TAG", "updateDesignTeam: " + teamMembersList.get(0));
                 break;
             case 2016:
                 teamMembersList = Arrays.asList(getResources().getStringArray(R.array.yb2016_team_design)) ;

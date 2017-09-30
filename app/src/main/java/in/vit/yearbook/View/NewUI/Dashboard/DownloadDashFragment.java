@@ -61,7 +61,6 @@ public class DownloadDashFragment extends BaseFragment implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.new_fragment_downloading_dash_btn_downloading :
-                Log.i("TAG", "onClick: ");
 
                 BookDownloadingListener bookDownloadingListener = new BookDownloadingListener() ;
                 FileDownloader.getImpl().create(Constants.BASE_URL + Constants.URL_BOOK_2017)
