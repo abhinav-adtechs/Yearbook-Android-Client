@@ -46,6 +46,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     compile 'com.airbnb.android:lottie:2.2.0'
+    compile 'com.liulishuo.filedownloader:library:1.6.6'
 }
 repositories {
     mavenCentral()
