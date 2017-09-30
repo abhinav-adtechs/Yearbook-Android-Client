@@ -12,7 +12,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/new_fragment_dashboard_top_animation"
         android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="56dp"
         android:orientation="horizontal"
         app:lottie_fileName="book_flip.json"
 
@@ -24,20 +24,26 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
     <View
         android:layout_width="120dp"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="0dp"
         android:layout_margin="16dp"
         android:background="@drawable/rounded_rectangle_tube"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintHorizontal_bias="0.497"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/solid_white_up" />
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/solid_white_up"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
     <View
         android:id="@+id/solid_white_up"
@@ -46,17 +52,15 @@
         android:layout_alignParentTop="true"
         android:background="#DDDDDD"
         android:visibility="visible"
-        android:layout_marginStart="144dp"
-        android:layout_marginEnd="144dp"
 
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         android:layout_marginTop="16dp"
 
-        app:layout_constraintTop_toBottomOf="@+id/new_fragment_dashboard_top_animation" />
+        app:layout_constraintTop_toBottomOf="@+id/new_fragment_dashboard_top_animation"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
 
     <!--app:layout_constraintDimensionRatio="w,1:1"-->
@@ -78,7 +82,11 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/solid_white_up"
-        app:layout_constraintVertical_bias="0.0" >
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1">
 
 
 
@@ -91,42 +99,89 @@
         android:layout_height="250dp"
         app:srcCompat="@drawable/yb2017_cover"
         android:background="@drawable/rectangle_flat_views"
-        android:padding="8dp"
+        android:padding="7dp"
         android:clickable="true"
-        app:layout_constraintTop_toTopOf="@+id/new_fragment_dashboard_view"
-        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/new_fragment_dashboard_view"
-        android:layout_marginBottom="16dp"
         app:layout_constraintLeft_toLeftOf="@+id/new_fragment_dashboard_view"
-        app:layout_constraintVertical_bias="0.5"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintRight_toLeftOf="@+id/guideline2"
-        app:layout_constraintHorizontal_bias="0.0" />
-
-    <FrameLayout
-        android:id="@+id/new_fragment_dashboard_frame_download"
-        android:clickable="true"
-        android:background="@drawable/rectangle_flat_views"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="@+id/new_fragment_dashboard_view"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintTop_toTopOf="@+id/new_fragment_dashboard_view"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/new_fragment_dashboard_view"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.496"
-        app:layout_constraintLeft_toRightOf="@+id/new_fragment_dashboard_iv_cover"
-        android:layout_marginLeft="8dp">
+        app:layout_constraintVertical_bias="0.65" />
 
-    </FrameLayout>
-
-    <android.support.constraint.Guideline
+    <TextView
+        android:id="@+id/new_fragment_dashboard_tv_click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline2"
-        app:layout_constraintGuide_begin="247dp"
-        android:orientation="vertical" />
+        android:textSize="17sp"
+        android:textColor="@color/colorWhite"
+        android:text="Click on the cover for download options"
+        app:layout_constraintTop_toTopOf="@+id/new_fragment_dashboard_view"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="122dp"
+        app:layout_constraintBottom_toTopOf="@+id/new_fragment_dashboard_iv_cover"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/new_fragment_dashboard_iv_cover"
+        android:layout_marginRight="16dp"
+        app:layout_constraintRight_toRightOf="@+id/new_fragment_dashboard_iv_cover"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintBottom_creator="1" />
+
+    <TextView
+        android:id="@+id/new_fragment_dashboard_tv_size"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:textSize="17sp"
+        android:text="75 MB"
+        app:layout_constraintRight_toLeftOf="@+id/new_fragment_dashboard_btn_download"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="@+id/new_fragment_dashboard_btn_download"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginRight="25dp"
+        app:layout_constraintLeft_toLeftOf="@+id/new_fragment_dashboard_tv_details"
+        android:layout_marginLeft="8dp" />
+
+    <TextView
+        android:id="@+id/new_fragment_dashboard_tv_details"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:text="Download Details"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintTop_toTopOf="@+id/new_fragment_dashboard_iv_cover"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/new_fragment_dashboard_iv_cover"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.317"
+        android:layout_marginRight="24dp"
+        app:layout_constraintRight_toRightOf="@+id/new_fragment_dashboard_view" />
+
+    <ImageButton
+        android:id="@+id/new_fragment_dashboard_btn_download"
+        android:visibility="invisible"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/ic_cloud_download_white_24px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="21dp"
+        app:layout_constraintTop_toBottomOf="@+id/new_fragment_dashboard_tv_details"
+        app:layout_constraintRight_toRightOf="@+id/new_fragment_dashboard_tv_details" />
+
 
 </android.support.constraint.ConstraintLayout>
