@@ -1,16 +1,20 @@
 package in.vit.yearbook.View.NewUI.Team;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.AbsListView;
 import android.widget.ImageButton;
 
 import java.util.ArrayList;
@@ -23,8 +27,14 @@ import butterknife.OnClick;
 import in.vit.yearbook.Model.Utils.Constants;
 import in.vit.yearbook.R;
 import in.vit.yearbook.View.NewUI.BaseFragment;
+import in.vit.yearbook.View.NewUI.Dashboard.DashYearAdapter;
+import in.vit.yearbook.View.OldUI.Dashboard.CenterZoomLayoutManager;
 
 public class TeamFragment extends BaseFragment implements View.OnClickListener {
+
+    @BindView(R.id.new_fragment_team_rv_year)
+    RecyclerView rvYear ;
+    DashYearAdapter dashYearAdapter ;
 
     @BindView(R.id.new_fragment_team_btn_editorial)
     ImageButton ibEditorial ;
@@ -47,6 +57,8 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
     private Integer currentState = Constants.STATE_EDITORIAL ;
     LayoutAnimationController controller ;
 
+    private int currentYear = 2017 ;
+
 
 
     @Nullable
@@ -62,7 +74,7 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
         rvTeam.setLayoutAnimation(controller);
         rvTeam.setItemAnimator(new DefaultItemAnimator());
         rvTeam.setAdapter(teamMembersAdapter);
-        updateEditorialTeam(2017);
+        updateEditorialTeam(currentYear);
 
         return view ;
     }
@@ -75,24 +87,77 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
         ibDesign.setOnClickListener(this);
         ibPhotography.setOnClickListener(this);
         ibManagement.setOnClickListener(this);
+        setupRv();
     }
 
+
+    private void setupRv() {
+
+        dashYearAdapter = new DashYearAdapter() ;
+        final RecyclerView.LayoutManager layoutManager = new CenterZoomLayoutManager(this.getActivity().getApplicationContext(),
+                LinearLayoutManager.HORIZONTAL, false) ;
+        rvYear.setLayoutManager(layoutManager);
+        rvYear.setAdapter(dashYearAdapter);
+
+        final SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(rvYear);
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                rvYear.smoothScrollToPosition(0);
+            }
+        }, 20) ;
+
+
+        rvYear.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if(newState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    View centerView = snapHelper.findSnapView(layoutManager);
+                    int pos = layoutManager.getPosition(centerView);
+                    Log.e("Snapped Item Position:","" + pos);
+                    setCurrentYear(pos);
+                }
+            }
+        });
+
+    }
+
+    private void setCurrentYear(int pos) {
+        switch (pos){
+            case 0:
+                currentYear = 2017 ;
+                break;
+            case 1:
+                currentYear = 2016 ;
+                break;
+            case 2:
+                currentYear = 2015 ;
+                break;
+            case 3:
+                currentYear = 2014 ;
+                break;
+        }
+        updateEditorialTeam(currentYear);
+    }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.new_fragment_team_btn_editorial:
-                updateEditorialTeam(2017);
+                updateEditorialTeam(currentYear);
                 break;
             case R.id.new_fragment_team_btn_design:
                 Log.i("TAG", "onClick: ");
-                updateDesignTeam(2017);
+                updateDesignTeam(currentYear);
                 break;
             case R.id.new_fragment_team_btn_photography:
-                updatePhotographyTeam(2017);
+                updatePhotographyTeam(currentYear);
                 break;
             case R.id.new_fragment_team_btn_management:
-                updateManagementTeam(2017);
+                updateManagementTeam(currentYear);
                 break;
         }
     }

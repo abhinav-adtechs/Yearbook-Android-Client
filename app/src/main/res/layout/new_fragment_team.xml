@@ -7,10 +7,33 @@
     android:layout_height="match_parent"
     >
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="0dp"
-        android:layout_height="90dp"
+    <View
+        android:layout_width="120dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_rectangle_tube"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/solid_white_up"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintVertical_bias="0.5" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/new_fragment_team_rv_year"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        app:lottie_fileName="book_flip.json"
+        android:paddingStart="36dp"
+        android:paddingEnd="36dp"
+        android:clipToPadding="false"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="16dp"
@@ -19,7 +42,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:id="@+id/new_fragment_team_top_animation"
+        app:layout_constraintHorizontal_bias="0.0"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintLeft_creator="1" />
 
@@ -33,7 +56,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="24dp"
-        app:layout_constraintTop_toBottomOf="@+id/new_fragment_team_top_animation"
+        app:layout_constraintTop_toBottomOf="@+id/new_fragment_team_rv_year"
 
         android:layout_marginStart="144dp"
         android:layout_marginEnd="144dp"
