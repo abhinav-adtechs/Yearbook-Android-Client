@@ -7,11 +7,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +24,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.AbsListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +37,7 @@ import in.vit.yearbook.Model.UIModels.BookDownloadingListener;
 import in.vit.yearbook.Model.Utils.Constants;
 import in.vit.yearbook.R;
 import in.vit.yearbook.View.NewUI.BaseFragment;
+import in.vit.yearbook.View.OldUI.Dashboard.CenterZoomLayoutManager;
 
 
 public class DashboardFragment extends BaseFragment implements View.OnClickListener{
@@ -39,7 +45,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     @BindView(R.id.new_fragment_dashboard_iv_cover)
     ImageView ivCoverPhoto ;
 
-    @BindView(R.id.new_fragment_dashboard_top_animation)
+    @BindView(R.id.new_fragment_dashboard_rv_year)
     RecyclerView rvDashboardTopBook;
 
     @BindView(R.id.new_fragment_dashboard_btn_download)
@@ -59,6 +65,10 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private NotificationManager notificationManager ;
     private NotificationCompat.Builder notificationBuilder ;
 
+    private DashYearAdapter dashYearAdapter ;
+
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -75,7 +85,43 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        setupRv() ;
+
     }
+
+    private void setupRv() {
+
+        dashYearAdapter = new DashYearAdapter() ;
+        final RecyclerView.LayoutManager layoutManager = new CenterZoomLayoutManager(this.getActivity().getApplicationContext(),
+                LinearLayoutManager.HORIZONTAL, false) ;
+        rvDashboardTopBook.setLayoutManager(layoutManager);
+        rvDashboardTopBook.setAdapter(dashYearAdapter);
+
+        final SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(rvDashboardTopBook);
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                rvDashboardTopBook.smoothScrollToPosition(0);
+            }
+        }, 20) ;
+
+
+        rvDashboardTopBook.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if(newState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    View centerView = snapHelper.findSnapView(layoutManager);
+                    int pos = layoutManager.getPosition(centerView);
+                    Log.e("Snapped Item Position:","" + pos);
+                }
+            }
+        });
+
+    }
+
 
 
     @Override
@@ -171,9 +217,6 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
             Log.i("TAG", "onActivityResult: ");
         }
     }
-
-
-
 
 
     private void startDownloading() {
