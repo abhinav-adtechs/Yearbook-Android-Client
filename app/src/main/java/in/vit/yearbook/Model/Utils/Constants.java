@@ -14,6 +14,13 @@ abstract public class Constants {
     final public static Integer STATE_DASHBOARD = 8011 ;
     final public static Integer STATE_TEAM = 8012 ;
 
+    /*TEAM_NAVIGATION_STATE*/
+    final public static Integer STATE_EDITORIAL = 7010 ;
+    final public static Integer STATE_DESIGN = 7011 ;
+    final public static Integer STATE_PHOTOGRAPHY = 7012 ;
+    final public static Integer STATE_MANAGEMENT = 7013 ;
+
+
 
     /*Books URL*/
     final public static String BASE_URL = "http://abhinavdas.tech/Yearbook-filehosting.github.io/";

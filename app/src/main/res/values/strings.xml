@@ -4,4 +4,131 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+
+    <array name="yb2017_team_editorial">
+        <item>Aarti Susan Kuruvilla</item>
+        <item>Shreya Ishani</item>
+        <item>Abhinav Das</item>
+        <item> </item>
+        <item>Adrija Khan</item>
+        <item>Amita Varma</item>
+        <item>Akshaya Parthasarathy</item>
+        <item>K. Damodaran</item>
+        <item>Anshaj Khare</item>
+        <item>Sayan B</item>
+        <item>Anuradha Iyer</item>
+        <item>Ananya Kar</item>
+        <item>Aparna Ramachandran</item>
+    </array>
+
+    <array name="yb2017_team_design">
+
+        <item>Shreya Gupta</item>
+        <item>Pranav Chimote</item>
+        <item>Ainesh Patidar</item>
+        <item>Aishwarya Rao</item>
+
+        <item> </item>
+        <item>Rahul Ghosh</item>
+        <item>Adhvik Madhav</item>
+        <item>Pallavi Sreeram</item>
+        <item>Kshitij Srivastava</item>
+        <item>AJAYKUMAR</item> 0
+
+    </array>
+    <array name="yb2017_team_photography">
+
+        <item>Siddhartha Srivastava</item>
+        <item>Mridul Markandya</item>
+        <item>Manojkummar M</item>
+        <item>MSK Siddhartha</item>
+
+        <item> </item>
+        <item>Krishnav biyani</item>
+        <item>K. Damodaran</item>
+        <item>K. Mohiuddin Farooqui</item>
+        <item>Anmol Srinivas</item>
+        <item>M.kishore.</item>
+
+    </array>
+    <array name="yb2017_team_management">
+
+        <item>Harshil Shah</item>
+        <item>Prakhar Sahay</item>
+        <item>Ujjawal Surana</item>
+        <item>D.Akhileshwar Reddy</item>
+        <item>Abhivishrut Singh</item>
+
+        <item> </item>
+        <item>Nishta Jetly</item>
+        <item>Sneha Aggarwal</item>
+        <item>Soham Dutta</item>
+        <item>Debarati Ray</item>
+        <item>Ankita Das</item>
+        <item>Nandita Chandel</item>
+        <item>Abhishek Gupta</item>
+        <item>Puneet</item>
+        <item>Revati</item>
+        <item>Malvika Kharbanda</item>
+        <item>Amrita</item>
+        <item>Akanksha Lal</item>
+        <item>Swastika</item>
+        <item>Soumyadeep</item>
+        <item>Priyal</item>
+        <item>Sneha</item>
+        <item>Siddhant</item>
+        <item>Akhil</item>
+        <item>Abhas Singh</item>
+        <item>Ayush Bhattacharya</item>
+        <item>Y. Mohan SaiVenkat</item>
+        <item>Meghana P. R.</item>
+        <item>Sidarth Kumaran</item>
+        <item>Shruthi G</item>
+        <item>T Srihari</item>
+        <item>M K Manoj</item>
+        <item>Ayush Lohiya</item>
+        <item>Bodapati Saivineeth</item>
+        <item>B Kinnera</item>
+        <item>Neha Duggal</item>
+        <item>A Swathi</item>
+        <item>Pavan Sreenivas</item>
+        <item>Anjani</item>
+        <item>Awari Renuka Sambhaji</item>
+        <item>S Naveen Kumar</item>
+        <item>M V Anand</item>
+        <item>P Ekalaivan</item>
+        <item>Amandeep Batra</item>
+        <item>Mishank Modi</item>
+        <item>D Satya Saikrishna</item>
+        <item>Kota Sudhakar</item>
+        <item>A Mohith</item>
+        <item>Rivana Christie</item>
+        <item>Ann George</item>
+        <item>Ranganath Narayan</item>
+        <item>Akshay Shaji</item>
+        <item>Nitya Reddy</item>
+        <item>Kshitij Sharama</item>
+        <item>Pallavi Sreeram</item>
+        <item>Srijani</item>
+        <item>Kashish</item>
+        <item>Shivam</item>
+        <item>Nithya</item>
+        <item>Praveen</item>
+        <item>Rajat</item>
+
+    </array>
+
+    <array name="yb2016_team_editorial">
+
+    </array>
+    <array name="yb2016_team_design">
+
+    </array>
+    <array name="yb2016_team_photography">
+
+    </array>
+    <array name="yb2016_team_management">
+
+    </array>
 </resources>
