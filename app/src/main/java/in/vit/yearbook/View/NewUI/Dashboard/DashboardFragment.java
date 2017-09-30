@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     ImageView ivCoverPhoto ;
 
     @BindView(R.id.new_fragment_dashboard_top_animation)
-    LottieAnimationView lottieAnimationView ;
+    RecyclerView rvDashboardTopBook;
 
     DownloadPreviewFragment downloadPreviewFragment ;
     //DownloadDashFragment downloadDashFragment ;
@@ -43,7 +44,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
         frameDownload.setOnClickListener(this);
         ivCoverPhoto.setOnClickListener(this);
-        lottieAnimationView.setImageAssetsFolder("images");
+
         return view ;
     }
 

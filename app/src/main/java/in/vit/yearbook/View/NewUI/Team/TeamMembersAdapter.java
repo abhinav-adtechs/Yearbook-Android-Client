@@ -34,12 +34,10 @@ public class TeamMembersAdapter extends RecyclerView.Adapter<TeamMembersAdapter.
     @Override
     public void onBindViewHolder(MembersViewHolder holder, int position) {
         holder.tvNames.setText(members.get(position));
-        Log.i("TAG", "onBindViewHolder: " + position + " " + members.get(position));
     }
 
     @Override
     public int getItemCount() {
-        Log.i("TAG", "getItemCount: " + members.size());
         return members.size();
     }
 
