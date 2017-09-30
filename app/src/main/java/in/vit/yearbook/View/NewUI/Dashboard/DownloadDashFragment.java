@@ -51,10 +51,10 @@ public class DownloadDashFragment extends BaseFragment implements View.OnClickLi
 
     private void getExistingState() {
         FileDownloader.setup(parentActivity);
-
+/*
         Log.i("TAG", "getExistingState: " +
                 FileDownloader.getImpl().getStatus(Constants.BASE_URL + Constants.URL_BOOK_2017,
-                        Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/2017.pdf"));
+                        Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/2017.pdf"));*/
     }
 
     @Override

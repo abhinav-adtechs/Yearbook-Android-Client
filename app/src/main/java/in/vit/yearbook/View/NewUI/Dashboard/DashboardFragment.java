@@ -67,6 +67,8 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
     private DashYearAdapter dashYearAdapter ;
 
+    private String currentYear = "2017" ;
+
 
 
     @Nullable
@@ -116,13 +118,13 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                     View centerView = snapHelper.findSnapView(layoutManager);
                     int pos = layoutManager.getPosition(centerView);
                     Log.e("Snapped Item Position:","" + pos);
+                    setCurrentYear(pos);
+                    setBooks(pos) ;
                 }
             }
         });
 
     }
-
-
 
     @Override
     public void onClick(View view) {
@@ -164,7 +166,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, EXTERNAL_STORAGE_PERMISSION_CONSTANT);
                 }else {
                     if (!downloadingState)
-                        startDownloading() ;
+                        startDownloading(currentYear) ;
                     else
                         pauseDownloading() ;
                 }
@@ -172,6 +174,101 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
         }
     }
+
+
+    private void setBooks(int position) {
+
+        if (showStateSelected){
+            ivCoverPhoto.startAnimation(slideRightAnimation());
+            AlphaAnimation fadeOut= new AlphaAnimation(1.0f, 0.0f) ;
+            fadeOut.setDuration(800);
+            fadeOut.setFillEnabled(true);
+            fadeOut.setFillAfter(true);
+            tvDownloadDetails.setAnimation(fadeOut);
+            tvDownloadSize.setAnimation(fadeOut);
+            ibDownload.setAnimation(fadeOut);
+            ibDownload.setVisibility(View.VISIBLE);
+            showStateSelected = false ;
+            ibDownload.setEnabled(false);
+        }
+
+        switch (position){
+            case 0:
+                ivCoverPhoto.setImageDrawable(getResources().getDrawable(R.drawable.yb2017_cover));
+                break;
+            case 1:
+                ivCoverPhoto.setImageDrawable(getResources().getDrawable(R.drawable.yb2016_cover));
+                break;
+            case 2:
+                ivCoverPhoto.setImageDrawable(getResources().getDrawable(R.drawable.yb2016_cover));
+                break;
+            case 3:
+                ivCoverPhoto.setImageDrawable(getResources().getDrawable(R.drawable.yb2016_cover));
+                break;
+        }
+    }
+
+    private void startDownloading(String year) {
+
+        FileDownloader.setup(this.getActivity());
+        downloadingState = true ;
+
+        Log.i("TAG", "getExistingState: " + FileDownloader.getImpl().getStatus(Constants.BASE_URL + Constants.URL_BOOK + year + ".pdf",
+                        Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/" + year + ".pdf"));
+
+        notificationManager =
+                (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationBuilder = new NotificationCompat.Builder(getActivity());
+        notificationBuilder.setContentTitle("Yearbook Rewind " + year)
+                .setContentText("Download in progress")
+                .setSmallIcon(R.mipmap.yearbook_logo);
+
+
+        bookDownloadingListener = new BookDownloadingListener(Integer.parseInt(year), notificationManager, notificationBuilder) ;
+        FileDownloader.getImpl().create(Constants.BASE_URL + Constants.URL_BOOK + year + ".pdf")
+                .setPath(Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/" + year + ".pdf")
+                .setListener(bookDownloadingListener)
+                .asInQueueTask()
+                .enqueue() ;
+        FileDownloader.getImpl().start(bookDownloadingListener, true) ;
+    }
+
+    private void pauseDownloading() {
+        FileDownloader.setup(this.getActivity());
+        FileDownloader.getImpl().pause(bookDownloadingListener) ;
+        downloadingState = false ;
+    }
+
+
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+
+        if (requestCode == EXTERNAL_STORAGE_PERMISSION_CONSTANT){
+            Log.i("TAG", "onRequestPermissionsResult: " + grantResults[0]);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == EXTERNAL_STORAGE_PERMISSION_CONSTANT){
+            Log.i("TAG", "onActivityResult: ");
+        }
+    }
+
+
+
+
+
+
+
+
 
     private Animation slideLeftAnimation() {
         Animation inFromLeft = new TranslateAnimation(
@@ -199,56 +296,26 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         return inFromLeft;
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-
-        if (requestCode == EXTERNAL_STORAGE_PERMISSION_CONSTANT){
-            Log.i("TAG", "onRequestPermissionsResult: " + grantResults[0]);
+    void setCurrentYear(int state){
+        switch (state){
+            case 0:
+                currentYear = "2017" ;
+                tvDownloadSize.setText("65.8 MB");
+                break;
+            case 1:
+                currentYear = "2016" ;
+                tvDownloadSize.setText("42.9 MB");
+                break;
+            case 2:
+                currentYear = "2015" ;
+                tvDownloadSize.setText("42.9 MB");
+                break;
+            case 3:
+                currentYear = "2014" ;
+                tvDownloadSize.setText("42.9 MB");
+                break;
         }
     }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == EXTERNAL_STORAGE_PERMISSION_CONSTANT){
-            Log.i("TAG", "onActivityResult: ");
-        }
-    }
-
-
-    private void startDownloading() {
-
-        FileDownloader.setup(this.getActivity());
-        downloadingState = true ;
-
-        Log.i("TAG", "getExistingState: " + FileDownloader.getImpl().getStatus(Constants.BASE_URL + Constants.URL_BOOK_2017,
-                        Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/2017.pdf"));
-
-        notificationManager =
-                (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationBuilder = new NotificationCompat.Builder(getActivity());
-        notificationBuilder.setContentTitle("YB2017 Downloading")
-                .setContentText("Download in progress")
-                .setSmallIcon(R.mipmap.yearbook_logo);
-
-
-        bookDownloadingListener = new BookDownloadingListener(notificationManager, notificationBuilder) ;
-        FileDownloader.getImpl().create(Constants.BASE_URL + Constants.URL_BOOK_2017)
-                .setPath(Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/2017.pdf")
-                .setListener(bookDownloadingListener)
-                .asInQueueTask()
-                .enqueue() ;
-        FileDownloader.getImpl().start(bookDownloadingListener, true) ;
-    }
-
-    private void pauseDownloading() {
-        FileDownloader.setup(this.getActivity());
-        FileDownloader.getImpl().pause(bookDownloadingListener) ;
-    }
-
-
 
 }

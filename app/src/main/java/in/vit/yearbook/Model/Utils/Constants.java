@@ -24,6 +24,6 @@ abstract public class Constants {
 
     /*Books URL*/
     final public static String BASE_URL = "http://abhinavdas.tech/Yearbook-filehosting.github.io/";
-    final public static String URL_BOOK_2017 = "assets/yb2017.pdf" ;
+    final public static String URL_BOOK = "assets/yb" ;
 
 }
