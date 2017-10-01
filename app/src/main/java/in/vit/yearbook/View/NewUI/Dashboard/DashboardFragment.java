@@ -1,7 +1,9 @@
 package in.vit.yearbook.View.NewUI.Dashboard;
 
 import android.Manifest;
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -29,6 +31,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dd.CircularProgressButton;
+import com.liulishuo.filedownloader.BaseDownloadTask;
+import com.liulishuo.filedownloader.FileDownloadLargeFileListener;
 import com.liulishuo.filedownloader.FileDownloader;
 
 import butterknife.BindView;
@@ -38,6 +43,7 @@ import in.vit.yearbook.Model.Utils.Constants;
 import in.vit.yearbook.R;
 import in.vit.yearbook.View.NewUI.BaseFragment;
 import in.vit.yearbook.View.OldUI.Dashboard.CenterZoomLayoutManager;
+import in.vit.yearbook.View.OldUI.Dashboard.MainActivity;
 
 
 public class DashboardFragment extends BaseFragment implements View.OnClickListener{
@@ -49,16 +55,15 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     RecyclerView rvDashboardTopBook;
 
     @BindView(R.id.new_fragment_dashboard_btn_download)
-    ImageButton ibDownload ;
+    CircularProgressButton ibDownload ;
 
     @BindView(R.id.new_fragment_dashboard_tv_details)
     TextView tvDownloadDetails ;
 
-    @BindView(R.id.new_fragment_dashboard_tv_size)
-    TextView tvDownloadSize ;
 
-    private boolean downloadingState = false ;
+    private boolean downloadingState[] = {false, false, false, false} ;
     private boolean showStateSelected = false ;
+
     private static final int EXTERNAL_STORAGE_PERMISSION_CONSTANT = 101;
     private BookDownloadingListener bookDownloadingListener ;
 
@@ -68,6 +73,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private DashYearAdapter dashYearAdapter ;
 
     private String currentYear = "2017" ;
+    private int currentYearPosition = 0 ;
 
 
 
@@ -106,7 +112,13 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                rvDashboardTopBook.smoothScrollToPosition(0);
+                rvDashboardTopBook.getLayoutManager().scrollToPosition(400);
+            }
+        }, 20) ;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                rvDashboardTopBook.smoothScrollToPosition(400);
             }
         }, 20) ;
 
@@ -138,7 +150,6 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                     fadeIn.setFillEnabled(true);
                     fadeIn.setFillAfter(true);
                     tvDownloadDetails.setAnimation(fadeIn);
-                    tvDownloadSize.setAnimation(fadeIn);
                     ibDownload.setAnimation(fadeIn);
                     ibDownload.setVisibility(View.VISIBLE);
                     showStateSelected = true ;
@@ -150,7 +161,6 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                     fadeOut.setFillEnabled(true);
                     fadeOut.setFillAfter(true);
                     tvDownloadDetails.setAnimation(fadeOut);
-                    tvDownloadSize.setAnimation(fadeOut);
                     ibDownload.setAnimation(fadeOut);
                     ibDownload.setVisibility(View.VISIBLE);
                     showStateSelected = false ;
@@ -165,9 +175,10 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                         getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, EXTERNAL_STORAGE_PERMISSION_CONSTANT);
                 }else {
-                    if (!downloadingState)
+                    if (!downloadingState[currentYearPosition]){
+
                         startDownloading(currentYear) ;
-                    else
+                    } else
                         pauseDownloading() ;
                 }
                 break;
@@ -179,20 +190,20 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private void setBooks(int position) {
 
         if (showStateSelected){
+            ibDownload.setProgress(0);
             ivCoverPhoto.startAnimation(slideRightAnimation());
             AlphaAnimation fadeOut= new AlphaAnimation(1.0f, 0.0f) ;
             fadeOut.setDuration(800);
             fadeOut.setFillEnabled(true);
             fadeOut.setFillAfter(true);
             tvDownloadDetails.setAnimation(fadeOut);
-            tvDownloadSize.setAnimation(fadeOut);
             ibDownload.setAnimation(fadeOut);
             ibDownload.setVisibility(View.VISIBLE);
             showStateSelected = false ;
             ibDownload.setEnabled(false);
         }
 
-        switch (position){
+        switch (position%4){
             case 0:
                 ivCoverPhoto.setImageDrawable(getResources().getDrawable(R.drawable.yb2017_cover));
                 break;
@@ -208,10 +219,13 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         }
     }
 
-    private void startDownloading(String year) {
+    private void startDownloading(final String year) {
 
+        ibDownload.setVisibility(View.VISIBLE);
+        String downloadURL = Constants.BASE_URL + Constants.URL_BOOK + year + ".pdf" ;
+        Log.i("TAG", "startDownloading: " + downloadURL);
         FileDownloader.setup(this.getActivity());
-        downloadingState = true ;
+        downloadingState[currentYearPosition] = true ;
 
         Log.i("TAG", "getExistingState: " + FileDownloader.getImpl().getStatus(Constants.BASE_URL + Constants.URL_BOOK + year + ".pdf",
                         Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/" + year + ".pdf"));
@@ -223,20 +237,73 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 .setContentText("Download in progress")
                 .setSmallIcon(R.mipmap.yearbook_logo);
 
+        notificationBuilder.setContentIntent(PendingIntent.getActivity(this.getActivity(), 0,
+                new Intent(this.getActivity(), MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT)) ;
 
         bookDownloadingListener = new BookDownloadingListener(Integer.parseInt(year), notificationManager, notificationBuilder) ;
-        FileDownloader.getImpl().create(Constants.BASE_URL + Constants.URL_BOOK + year + ".pdf")
+        FileDownloader.getImpl().create(downloadURL)
                 .setPath(Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/" + year + ".pdf")
-                .setListener(bookDownloadingListener)
-                .asInQueueTask()
-                .enqueue() ;
+                .setListener(new FileDownloadLargeFileListener() {
+                    @Override
+                    protected void pending(BaseDownloadTask task, long soFarBytes, long totalBytes) {
+                        Log.i("TAG", "pending: ");
+                        notificationBuilder.setProgress((int)totalBytes, (int)soFarBytes, false).setContentText("Download Pending") ;
+                        notificationManager.notify(task.getId(), notificationBuilder.build());
+                    }
+
+                    @Override
+                    protected void progress(BaseDownloadTask task, long soFarBytes, long totalBytes) {
+                        Double percent = Double.parseDouble(soFarBytes + "")/Double.parseDouble(totalBytes + "") ;
+                        ibDownload.setIndeterminateProgressMode(false);
+                        ibDownload.setProgress(percent.intValue());
+                        Log.i("TAG", "progress: " + task.getId() + " : " + soFarBytes + " : " + totalBytes );
+                        notificationBuilder.setProgress((int)totalBytes, (int)soFarBytes, false).setContentText("Downloading") ;
+                        notificationManager.notify(task.getId(), notificationBuilder.build());
+                        downloadingState[currentYearPosition] = true ;
+                    }
+
+                    @Override
+                    protected void paused(BaseDownloadTask task, long soFarBytes, long totalBytes) {
+                        Log.i("TAG", "paused: ");
+                        ibDownload.setIndeterminateProgressMode(true);
+                        notificationBuilder.setProgress((int)totalBytes, (int)soFarBytes, false).setContentText("Paused") ;
+                        notificationManager.notify(task.getId(), notificationBuilder.build());
+                        downloadingState[currentYearPosition] = false ;
+                    }
+
+                    @Override
+                    protected void completed(BaseDownloadTask task) {
+                        Log.i("TAG", "completed: ");
+                        ibDownload.setProgress(100);
+                        notificationBuilder.setProgress(0, 0, false).setContentText("Download Complete") ;
+                        notificationManager.notify(task.getId(), notificationBuilder.build());
+                        downloadingState[currentYearPosition] = false ;
+
+                    }
+
+                    @Override
+                    protected void error(BaseDownloadTask task, Throwable e) {
+                        Log.i("TAG", "error: " + e.getLocalizedMessage());
+                        ibDownload.setProgress(-1);
+                        notificationBuilder.setProgress(0, 0, false).setContentText("Error Downloading") ;
+                        notificationManager.notify(task.getId(), notificationBuilder.build());
+                        downloadingState[currentYearPosition] = false ;
+
+                    }
+
+                    @Override
+                    protected void warn(BaseDownloadTask task) {
+                        Log.d("TAG", "warn: ");
+                    }
+                })
+                .start() ;
         FileDownloader.getImpl().start(bookDownloadingListener, true) ;
     }
 
     private void pauseDownloading() {
         FileDownloader.setup(this.getActivity());
         FileDownloader.getImpl().pause(bookDownloadingListener) ;
-        downloadingState = false ;
+        downloadingState[currentYearPosition] = false ;
     }
 
 
@@ -298,22 +365,23 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
 
     void setCurrentYear(int state){
-        switch (state){
+        currentYearPosition = state ;
+        switch (state%4){
             case 0:
                 currentYear = "2017" ;
-                tvDownloadSize.setText("65.8 MB");
+                ibDownload.setIdleText("Download 65.8 MB");
                 break;
             case 1:
                 currentYear = "2016" ;
-                tvDownloadSize.setText("42.9 MB");
+                ibDownload.setIdleText("Download 42.9 MB");
                 break;
             case 2:
                 currentYear = "2015" ;
-                tvDownloadSize.setText("42.9 MB");
+                ibDownload.setIdleText("Download 42.9 MB");
                 break;
             case 3:
                 currentYear = "2014" ;
-                tvDownloadSize.setText("42.9 MB");
+                ibDownload.setIdleText("Download 42.9 MB");
                 break;
         }
     }

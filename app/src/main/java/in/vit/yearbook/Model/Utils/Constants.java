@@ -23,7 +23,7 @@ abstract public class Constants {
 
 
     /*Books URL*/
-    final public static String BASE_URL = "http://abhinavdas.tech/Yearbook-filehosting.github.io/";
+    final public static String BASE_URL = "https://jordiie09.github.io/Yearbook-filehosting.github.io/";
     final public static String URL_BOOK = "assets/yb" ;
 
 }

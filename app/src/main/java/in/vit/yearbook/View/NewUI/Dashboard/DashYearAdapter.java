@@ -27,12 +27,12 @@ public class DashYearAdapter extends RecyclerView.Adapter<DashYearAdapter.YearVi
 
     @Override
     public void onBindViewHolder(YearViewHolder holder, int position) {
-        holder.tvYear.setText(years[position]);
+        holder.tvYear.setText(years[position%4]);
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return Integer.MAX_VALUE;
     }
 
     public class YearViewHolder extends RecyclerView.ViewHolder{
