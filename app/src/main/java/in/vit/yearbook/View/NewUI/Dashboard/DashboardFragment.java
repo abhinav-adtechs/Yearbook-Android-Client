@@ -47,6 +47,7 @@ import in.vit.yearbook.R;
 import in.vit.yearbook.View.NewUI.BaseFragment;
 import in.vit.yearbook.View.OldUI.Dashboard.CenterZoomLayoutManager;
 import in.vit.yearbook.View.OldUI.Dashboard.MainActivity;
+import in.vit.yearbook.View.OldUI.Preview.BookPreviewActivity;
 
 
 public class DashboardFragment extends BaseFragment implements View.OnClickListener{
@@ -81,7 +82,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private String currentYear = "2017" ;
     private int currentYearPosition = 0 ;
 
-    private boolean viewVisible = false ;
+    static private boolean viewVisible = false ;
 
     @Nullable
     @Override
@@ -165,7 +166,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                     tvDownloadDetails.setAnimation(fadeIn);
                     ibDownload.setAnimation(fadeIn);
                     ibDownload.setVisibility(View.VISIBLE);
-                    handleReadingBegin() ;
+                    handleReadingBegin(View.VISIBLE) ;
                     ibDownload.setEnabled(true);
                     showStateSelected = true ;
                 }else {
@@ -177,9 +178,10 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                     tvDownloadDetails.setAnimation(fadeOut);
                     ibDownload.setAnimation(fadeOut);
                     ibDownload.setVisibility(View.VISIBLE);
-                    handleReadingBegin();
+                    handleReadingBegin(View.INVISIBLE) ;
                     ibDownload.setEnabled(false);
                     showStateSelected = false ;
+
                 }
 
                 break;
@@ -199,30 +201,31 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 break;
 
             case R.id.new_fragment_dashboard_btn_read:
+                Intent intent = new Intent(this.getActivity(), BookPreviewActivity.class) ;
+                String fileName = Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/" + currentYear + ".pdf";
+                Log.i("TAG", "onClick: " + fileName);
+                intent.putExtra("fileName", fileName) ;
+
+                startActivity(intent);
+
                 break;
         }
     }
 
-    private void handleReadingBegin() {
+    private void handleReadingBegin(int visibility) {
         String fileName = Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/" + currentYear + ".pdf";
         File file = new File(fileName) ;
         if (file.exists()){
             Log.i("TAG", "File exists ");
-            if (!showStateSelected){
-                AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f) ;
-                fadeIn.setDuration(1200);
-                fadeIn.setFillEnabled(true);
-                fadeIn.setFillAfter(true);
-                btnRead.setEnabled(true);
-                btnRead.setVisibility(View.VISIBLE);
-            }else if (btnRead.getVisibility() == View.VISIBLE){
-                AlphaAnimation fadeOut= new AlphaAnimation(1.0f, 0.0f) ;
-                fadeOut.setDuration(800);
-                fadeOut.setFillEnabled(true);
-                fadeOut.setFillAfter(true);
-                btnRead.setAnimation(fadeOut);
+
+            if (visibility == View.INVISIBLE){
+                Log.i("TAG", "handleReadingBegin: INVISIBLE");
                 btnRead.setEnabled(false);
                 btnRead.setVisibility(View.INVISIBLE);
+            }else if (visibility == View.VISIBLE ){
+                Log.i("TAG", "handleReadingBegin: VISIBLE");
+                btnRead.setEnabled(true);
+                btnRead.setVisibility(View.VISIBLE);
             }
         }
 
@@ -244,6 +247,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
             ibDownload.setVisibility(View.VISIBLE);
             showStateSelected = false ;
             ibDownload.setEnabled(false);
+            handleReadingBegin(View.INVISIBLE) ;
         }
 
         switch (position%4){
@@ -323,7 +327,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                         downloadingState[currentYearPosition] = false ;
 
                         if (viewVisible){
-                            handleReadingBegin();
+                            handleReadingBegin(View.VISIBLE);
                         }
 
 

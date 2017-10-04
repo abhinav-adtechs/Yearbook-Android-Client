@@ -29,6 +29,11 @@
         <activity android:name=".View.NewUI.TestingActivity" >
 
         </activity>
+        <activity android:name=".View.OldUI.Preview.BookPreviewActivity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
     </application>
 
 </manifest>
