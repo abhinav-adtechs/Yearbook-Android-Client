@@ -93,7 +93,12 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
 
     private void setupRv() {
 
-        dashYearAdapter = new DashYearAdapter() ;
+        dashYearAdapter = new DashYearAdapter(new DashYearAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int pos) {
+                rvYear.smoothScrollToPosition(pos);
+            }
+        }) ;
         final RecyclerView.LayoutManager layoutManager = new CenterZoomLayoutManager(this.getActivity().getApplicationContext(),
                 LinearLayoutManager.HORIZONTAL, false) ;
         rvYear.setLayoutManager(layoutManager);
@@ -108,7 +113,7 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
             public void run() {
                 rvYear.smoothScrollToPosition(0);
             }
-        }, 20) ;
+        }, 500) ;
 
 
         rvYear.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -122,6 +127,8 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
                 }
             }
         });
+
+
 
     }
 
@@ -160,6 +167,11 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
                 updateManagementTeam(currentYear);
                 break;
         }
+
+        if (!rvTeam.isAnimating()){
+            rvTeam.scheduleLayoutAnimation();
+        }
+
     }
 
     void updateEditorialTeam(Integer year){
@@ -179,7 +191,6 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
         }
         teamMembersAdapter.updateArrayList(teamMembersList);
         teamMembersAdapter.notifyDataSetChanged();
-        rvTeam.scheduleLayoutAnimation();
     }
 
     void updateDesignTeam(Integer year){
@@ -200,7 +211,6 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
         }
         teamMembersAdapter.updateArrayList(teamMembersList);
         teamMembersAdapter.notifyDataSetChanged();
-        rvTeam.scheduleLayoutAnimation();
     }
 
     void updatePhotographyTeam(Integer year){
@@ -221,7 +231,6 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
         }
         teamMembersAdapter.updateArrayList(teamMembersList);
         teamMembersAdapter.notifyDataSetChanged();
-        rvTeam.scheduleLayoutAnimation();
     }
 
     void updateManagementTeam(Integer year){
@@ -242,6 +251,5 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
         }
         teamMembersAdapter.updateArrayList(teamMembersList);
         teamMembersAdapter.notifyDataSetChanged();
-        rvTeam.scheduleLayoutAnimation();
     }
 }

@@ -7,9 +7,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import in.vit.yearbook.R;
+import in.vit.yearbook.View.OldUI.Dashboard.DashboardBooksAdapter;
 
 
 public class DashYearAdapter extends RecyclerView.Adapter<DashYearAdapter.YearViewHolder> {
+
+    private OnItemClickListener onItemClickListener ;
+
+    public DashYearAdapter(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     private String[] years = {
             "2017",
@@ -17,6 +24,10 @@ public class DashYearAdapter extends RecyclerView.Adapter<DashYearAdapter.YearVi
             "2015",
             "2014"
     };
+
+    public interface OnItemClickListener{
+        public void onClick(int pos) ;
+    }
 
     @Override
     public YearViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -28,11 +39,12 @@ public class DashYearAdapter extends RecyclerView.Adapter<DashYearAdapter.YearVi
     @Override
     public void onBindViewHolder(YearViewHolder holder, int position) {
         holder.tvYear.setText(years[position%4]);
+        holder.bindListener(position);
     }
 
     @Override
     public int getItemCount() {
-        return Integer.MAX_VALUE;
+        return 4;
     }
 
     public class YearViewHolder extends RecyclerView.ViewHolder{
@@ -43,6 +55,15 @@ public class DashYearAdapter extends RecyclerView.Adapter<DashYearAdapter.YearVi
             super(itemView);
 
             tvYear = (TextView) itemView.findViewById(R.id.new_item_rv_year_tv) ;
+        }
+
+        public void bindListener(final int position){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onClick(position);
+                }
+            });
         }
     }
 }

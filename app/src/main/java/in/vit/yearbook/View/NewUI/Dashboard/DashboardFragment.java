@@ -99,7 +99,12 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
     private void setupRv() {
 
-        dashYearAdapter = new DashYearAdapter() ;
+        dashYearAdapter = new DashYearAdapter(new DashYearAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int pos) {
+                rvDashboardTopBook.smoothScrollToPosition(pos);
+            }
+        }) ;
         final RecyclerView.LayoutManager layoutManager = new CenterZoomLayoutManager(this.getActivity().getApplicationContext(),
                 LinearLayoutManager.HORIZONTAL, false) ;
         rvDashboardTopBook.setLayoutManager(layoutManager);
@@ -112,15 +117,9 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                rvDashboardTopBook.getLayoutManager().scrollToPosition(400);
+                rvDashboardTopBook.smoothScrollToPosition(0);
             }
-        }, 20) ;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                rvDashboardTopBook.smoothScrollToPosition(400);
-            }
-        }, 20) ;
+        }, 200) ;
 
 
         rvDashboardTopBook.addOnScrollListener(new RecyclerView.OnScrollListener() {
