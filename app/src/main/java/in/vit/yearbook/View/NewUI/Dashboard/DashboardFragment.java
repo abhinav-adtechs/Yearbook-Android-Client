@@ -27,6 +27,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +36,8 @@ import com.dd.CircularProgressButton;
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadLargeFileListener;
 import com.liulishuo.filedownloader.FileDownloader;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,6 +63,9 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     @BindView(R.id.new_fragment_dashboard_tv_details)
     TextView tvDownloadDetails ;
 
+    @BindView(R.id.new_fragment_dashboard_btn_read)
+    Button btnRead ;
+
 
     private boolean downloadingState[] = {false, false, false, false} ;
     private boolean showStateSelected = false ;
@@ -75,7 +81,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     private String currentYear = "2017" ;
     private int currentYearPosition = 0 ;
 
-
+    private boolean viewVisible = false ;
 
     @Nullable
     @Override
@@ -85,6 +91,8 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
         ivCoverPhoto.setOnClickListener(this);
         ibDownload.setOnClickListener(this);
+        btnRead.setOnClickListener(this);
+        btnRead.setEnabled(false);
 
         return view ;
     }
@@ -95,6 +103,12 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
         setupRv() ;
 
+    }
+
+    @Override
+    public void onResume() {
+        viewVisible = true ;
+        super.onResume();
     }
 
     private void setupRv() {
@@ -113,13 +127,13 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         final SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(rvDashboardTopBook);
 
-
+        rvDashboardTopBook.requestFocus() ;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 rvDashboardTopBook.smoothScrollToPosition(0);
             }
-        }, 200) ;
+        }, 400) ;
 
 
         rvDashboardTopBook.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -151,8 +165,9 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                     tvDownloadDetails.setAnimation(fadeIn);
                     ibDownload.setAnimation(fadeIn);
                     ibDownload.setVisibility(View.VISIBLE);
-                    showStateSelected = true ;
+                    handleReadingBegin() ;
                     ibDownload.setEnabled(true);
+                    showStateSelected = true ;
                 }else {
                     ivCoverPhoto.startAnimation(slideRightAnimation());
                     AlphaAnimation fadeOut= new AlphaAnimation(1.0f, 0.0f) ;
@@ -162,8 +177,9 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                     tvDownloadDetails.setAnimation(fadeOut);
                     ibDownload.setAnimation(fadeOut);
                     ibDownload.setVisibility(View.VISIBLE);
-                    showStateSelected = false ;
+                    handleReadingBegin();
                     ibDownload.setEnabled(false);
+                    showStateSelected = false ;
                 }
 
                 break;
@@ -182,7 +198,35 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                 }
                 break;
 
+            case R.id.new_fragment_dashboard_btn_read:
+                break;
         }
+    }
+
+    private void handleReadingBegin() {
+        String fileName = Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/" + currentYear + ".pdf";
+        File file = new File(fileName) ;
+        if (file.exists()){
+            Log.i("TAG", "File exists ");
+            if (!showStateSelected){
+                AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f) ;
+                fadeIn.setDuration(1200);
+                fadeIn.setFillEnabled(true);
+                fadeIn.setFillAfter(true);
+                btnRead.setEnabled(true);
+                btnRead.setVisibility(View.VISIBLE);
+            }else if (btnRead.getVisibility() == View.VISIBLE){
+                AlphaAnimation fadeOut= new AlphaAnimation(1.0f, 0.0f) ;
+                fadeOut.setDuration(800);
+                fadeOut.setFillEnabled(true);
+                fadeOut.setFillAfter(true);
+                btnRead.setAnimation(fadeOut);
+                btnRead.setEnabled(false);
+                btnRead.setVisibility(View.INVISIBLE);
+            }
+        }
+
+
     }
 
 
@@ -278,6 +322,11 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                         notificationManager.notify(task.getId(), notificationBuilder.build());
                         downloadingState[currentYearPosition] = false ;
 
+                        if (viewVisible){
+                            handleReadingBegin();
+                        }
+
+
                     }
 
                     @Override
@@ -365,24 +414,31 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
     void setCurrentYear(int state){
         currentYearPosition = state ;
-        switch (state%4){
+        switch (state){
             case 0:
                 currentYear = "2017" ;
-                ibDownload.setIdleText("Download 65.8 MB");
+                ibDownload.setText("Download 65.8 MB");
+
                 break;
             case 1:
                 currentYear = "2016" ;
-                ibDownload.setIdleText("Download 42.9 MB");
+                ibDownload.setText("Download 42.9 MB");
                 break;
             case 2:
                 currentYear = "2015" ;
-                ibDownload.setIdleText("Download 42.9 MB");
+                ibDownload.setText("Download 42.9 MB");
                 break;
             case 3:
                 currentYear = "2014" ;
-                ibDownload.setIdleText("Download 42.9 MB");
+                ibDownload.setText("Download 42.9 MB");
                 break;
         }
+        ibDownload.setPadding(7,7,7,7);
     }
 
+    @Override
+    public void onPause() {
+        viewVisible = false ;
+        super.onPause();
+    }
 }

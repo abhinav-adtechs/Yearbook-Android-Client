@@ -26,7 +26,7 @@ public class DashYearAdapter extends RecyclerView.Adapter<DashYearAdapter.YearVi
     };
 
     public interface OnItemClickListener{
-        public void onClick(int pos) ;
+        void onClick(int pos) ;
     }
 
     @Override
