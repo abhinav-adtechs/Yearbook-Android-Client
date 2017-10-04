@@ -152,6 +152,17 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
 
     }
 
+    private void downloadedSetup(){
+        String fileName = Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/" + currentYear + ".pdf";
+        File file = new File(fileName) ;
+        if (file.exists()){
+            Log.i("TAG", "onResume: ");
+            ibDownload.setProgress(100);
+            ibDownload.setPadding(8,8,8,8);
+            ibDownload.setText("Downloaded");
+        }
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()){
@@ -168,6 +179,7 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                     ibDownload.setVisibility(View.VISIBLE);
                     handleReadingBegin(View.VISIBLE) ;
                     ibDownload.setEnabled(true);
+                    downloadedSetup();
                     showStateSelected = true ;
                 }else {
                     ivCoverPhoto.startAnimation(slideRightAnimation());
@@ -301,8 +313,8 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                     @Override
                     protected void progress(BaseDownloadTask task, long soFarBytes, long totalBytes) {
                         Double percent = Double.parseDouble(soFarBytes + "")/Double.parseDouble(totalBytes + "") ;
-                        ibDownload.setIndeterminateProgressMode(false);
-                        ibDownload.setProgress(percent.intValue());
+                        /*ibDownload.setIndeterminateProgressMode(false);
+                        ibDownload.setProgress(percent.intValue());*/
                         Log.i("TAG", "progress: " + task.getId() + " : " + soFarBytes + " : " + totalBytes );
                         notificationBuilder.setProgress((int)totalBytes, (int)soFarBytes, false).setContentText("Downloading") ;
                         notificationManager.notify(task.getId(), notificationBuilder.build());
