@@ -5,7 +5,7 @@ import android.app.Application;
 import in.vit.yearbook.Dagger.Components.AppComponent;
 import in.vit.yearbook.Dagger.Components.DaggerAppComponent;
 import in.vit.yearbook.Dagger.Modules.SharedPrefModule;
-import in.vit.yearbook.Model.Utils.TypefaceUtil;
+import in.vit.yearbook.Model.Utils.FontsOverride;
 
 
 public class AppController extends Application {
@@ -20,7 +20,7 @@ public class AppController extends Application {
                 .sharedPrefModule(new SharedPrefModule(this))
                 .build();
 
-        TypefaceUtil.setDefaultFont(getApplicationContext(), "MONOSPACE", "fonts/VarelaRound-Regular.ttf");
+        FontsOverride.setDefaultFont(this, "MONOSPACE", "fonts/VarelaRound-Regular.ttf");
     }
 
     public AppComponent get() {

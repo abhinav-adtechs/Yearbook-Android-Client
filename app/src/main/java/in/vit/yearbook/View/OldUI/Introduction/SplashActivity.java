@@ -92,13 +92,13 @@ public class SplashActivity extends BaseActivity implements SurfaceHolder.Callba
         Log.i("TAG", "onPrepared: " + screenHeight + " " + screenWidth + " " + screenProportion);
         android.view.ViewGroup.LayoutParams lp = videoView.getLayoutParams();
 
-        if (videoProportion > screenProportion) {
+        /*if (videoProportion > screenProportion) {
             lp.width = screenWidth;
             lp.height = (int) ((float) screenWidth / videoProportion);
         } else {
             lp.width = (int) (videoProportion * (float) screenHeight);
             lp.height = screenHeight;
-        }
+        }*/
         Log.i("TAG", "onPrepared: " + lp.height + " " + lp.width);
 
         videoView.setLayoutParams(lp);
