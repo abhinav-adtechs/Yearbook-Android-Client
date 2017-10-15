@@ -182,4 +182,14 @@
         <item>Steffi Elizabeth Varughese</item>
         <item>Aditya Naveen</item>
     </array>
+
+    <array name="credits_list">
+        <item>Eventbus by greenrobot</item>
+        <item>Dagger2 by google</item>
+        <item>Butterknife by jakewharton</item>
+        <item>AndroidPdfViewer by barteksc</item>
+        <item>lottie-android by airbnb</item>
+        <item>FileDownloader by lingochamp</item>
+        <item>Circular Progress Button by dmytrodanylyk</item>
+    </array>
 </resources>
