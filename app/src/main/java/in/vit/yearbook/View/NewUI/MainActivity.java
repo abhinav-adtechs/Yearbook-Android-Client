@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 import in.vit.yearbook.Model.Utils.Constants;
 import in.vit.yearbook.R;
 import in.vit.yearbook.View.NewUI.Credits.CreditsFragment;
-import in.vit.yearbook.View.NewUI.Dashboard.DashboardFragment;
+import in.vit.yearbook.View.NewUI.Dashboard.DashboardUpdatedFragment;
 import in.vit.yearbook.View.NewUI.Team.TeamFragment;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener{
@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         //setSupportActionBar(toolbarMain);
         //getSupportActionBar().setTitle("");
 
-        currentFragment = new DashboardFragment() ;
+        currentFragment = new DashboardUpdatedFragment() ;
         addFragmentTransaction(currentFragment);
 
 
@@ -123,7 +123,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 break;
 
             case R.id.new_activity_main_tab_dashboard :
-                nextFragment = new DashboardFragment() ;
+                nextFragment = new DashboardUpdatedFragment() ;
                 makeFragmentTransaction(nextFragment, "Dashboard") ;
                 if (currentState == Constants.STATE_CREDITS){
                     scaleDownCredits();

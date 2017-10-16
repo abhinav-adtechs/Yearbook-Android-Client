@@ -24,7 +24,6 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 
-import com.airbnb.lottie.LottieAnimationView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

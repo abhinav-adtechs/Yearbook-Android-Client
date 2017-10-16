@@ -61,8 +61,6 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
     @BindView(R.id.new_fragment_dashboard_btn_download)
     CircularProgressButton ibDownload ;
 
-    @BindView(R.id.new_fragment_dashboard_tv_details)
-    TextView tvDownloadDetails ;
 
     @BindView(R.id.new_fragment_dashboard_btn_read)
     Button btnRead ;
@@ -174,7 +172,6 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                     fadeIn.setDuration(1200);
                     fadeIn.setFillEnabled(true);
                     fadeIn.setFillAfter(true);
-                    tvDownloadDetails.setAnimation(fadeIn);
                     ibDownload.setAnimation(fadeIn);
                     ibDownload.setVisibility(View.VISIBLE);
                     handleReadingBegin(View.VISIBLE) ;
@@ -187,7 +184,6 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                     fadeOut.setDuration(800);
                     fadeOut.setFillEnabled(true);
                     fadeOut.setFillAfter(true);
-                    tvDownloadDetails.setAnimation(fadeOut);
                     ibDownload.setAnimation(fadeOut);
                     ibDownload.setVisibility(View.VISIBLE);
                     handleReadingBegin(View.INVISIBLE) ;
@@ -254,7 +250,6 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
             fadeOut.setDuration(800);
             fadeOut.setFillEnabled(true);
             fadeOut.setFillAfter(true);
-            tvDownloadDetails.setAnimation(fadeOut);
             ibDownload.setAnimation(fadeOut);
             ibDownload.setVisibility(View.VISIBLE);
             showStateSelected = false ;
