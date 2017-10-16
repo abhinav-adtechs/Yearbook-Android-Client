@@ -175,6 +175,8 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
     }
 
     void updateEditorialTeam(Integer year){
+        clearSelection();
+        ibEditorial.setBackground(getResources().getDrawable(R.drawable.rounded_border_action_bar_filled));
         switch (year){
             case 2017:
                 teamMembersList = Arrays.asList(getResources().getStringArray(R.array.yb2017_team_editorial)) ;
@@ -194,6 +196,8 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
     }
 
     void updateDesignTeam(Integer year){
+        clearSelection();
+        ibDesign.setBackground(getResources().getDrawable(R.drawable.rounded_border_action_bar_filled));
         currentState = Constants.STATE_DESIGN ;
         switch (year){
             case 2017:
@@ -214,6 +218,8 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
     }
 
     void updatePhotographyTeam(Integer year){
+        clearSelection();
+        ibPhotography.setBackground(getResources().getDrawable(R.drawable.rounded_border_action_bar_filled));
         currentState = Constants.STATE_PHOTOGRAPHY ;
         switch (year){
             case 2017:
@@ -234,6 +240,8 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
     }
 
     void updateManagementTeam(Integer year){
+        clearSelection();
+        ibManagement.setBackground(getResources().getDrawable(R.drawable.rounded_border_action_bar_filled));
         currentState = Constants.STATE_MANAGEMENT ;
         switch (year){
             case 2017:
@@ -251,5 +259,12 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
         }
         teamMembersAdapter.updateArrayList(teamMembersList);
         teamMembersAdapter.notifyDataSetChanged();
+    }
+
+    private void clearSelection(){
+        ibDesign.setBackground(getResources().getDrawable(R.drawable.rounded_border_action_bar));
+        ibEditorial.setBackground(getResources().getDrawable(R.drawable.rounded_border_action_bar));
+        ibManagement.setBackground(getResources().getDrawable(R.drawable.rounded_border_action_bar));
+        ibPhotography.setBackground(getResources().getDrawable(R.drawable.rounded_border_action_bar));
     }
 }

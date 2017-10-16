@@ -38,7 +38,7 @@ class TeamRVAdapter(private val teamList: Array<Array<String>>, private val cont
             holderHeader.tvTitle.text = teamList[position][0]
             when (teamList[position][0]) {
                 "Editorial" -> holderHeader.ivDescription.setImageDrawable(context.resources.getDrawable(R.drawable.ic_notepad_2))
-                "Design" -> holderHeader.ivDescription.setImageDrawable(context.resources.getDrawable(R.drawable.ic_layers))
+                "Design" -> holderHeader.ivDescription.setImageDrawable(context.resources.getDrawable(R.drawable.ic_layers_2))
                 "Photography" -> holderHeader.ivDescription.setImageDrawable(context.resources.getDrawable(R.drawable.ic_photo_camera))
                 "Management" -> holderHeader.ivDescription.setImageDrawable(context.resources.getDrawable(R.drawable.ic_customer_service))
             }

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.dd.morphingbutton.MorphingButton;
@@ -30,7 +31,7 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
     @BindView(R.id.new_fragment_dashboard_iv_cover)
     ImageView ivCoverPhoto ;
     @BindView(R.id.new_fragment_dashboard_btn_download)
-    MorphingButton morphingBtnDownload;
+    Button morphingBtnDownload;
 
     private DashYearAdapter dashYearAdapter ;
     private boolean showStateSelected = false ;
@@ -45,7 +46,6 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
         animationUtils = new AnimationUtils() ;
         ivCoverPhoto.setOnClickListener(this);
         morphingBtnDownload.setOnClickListener(this);
-        setupMorphingButton();
         setupRv();
 
         return view ;
@@ -104,17 +104,6 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
         }
     }
 
-    private void setupMorphingButton(){
-
-        MorphingButton.Params circle = MorphingButton.Params.create()
-                .cornerRadius(20)
-                .color(getResources().getColor(R.color.mb_blue_dark))
-                .colorPressed(getResources().getColor(R.color.mb_blue_dark))
-                .text("Download 75MB") ;
-        morphingBtnDownload.morph(circle);
-
-
-    }
 
     @Override
     public void onClick(View v) {
@@ -130,9 +119,9 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
                 }
                 break;
             case R.id.new_fragment_dashboard_btn_download:
-                MorphingButton.Params circle = MorphingButton.Params.create()
-                        .text("Downloading") ;
-                morphingBtnDownload.morph(circle);
+
+
+                /*DOWNLOADING*/
                 break;
         }
     }
