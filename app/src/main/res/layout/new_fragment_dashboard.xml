@@ -182,13 +182,13 @@
         android:layout_height="wrap_content"
 
         app:progress_unreached_color="#CCCCCC"
-        app:progress_reached_color="@color/ybBaseBlue"
+        app:progress_reached_color="@color/colorWhite"
 
         app:progress_unreached_bar_height="1.75dp"
         app:progress_reached_bar_height="3.5dp"
 
         app:progress_text_size="14sp"
-        app:progress_text_color="#3498DB"
+        app:progress_text_color="@color/colorWhite"
         app:progress_text_offset="1dp"
         app:progress_text_visibility="visible"
 

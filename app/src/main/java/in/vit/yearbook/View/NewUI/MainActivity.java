@@ -2,6 +2,7 @@ package in.vit.yearbook.View.NewUI;
 
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentManager;
@@ -13,16 +14,28 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.io.File;
+
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import in.vit.yearbook.AppController;
+import in.vit.yearbook.Model.UIModels.ProgressUpdateEvent;
 import in.vit.yearbook.Model.Utils.Constants;
 import in.vit.yearbook.Presenter.Dashboard.DashboardCommunicationInterface;
+import in.vit.yearbook.Presenter.Main.MainActivityInterface;
+import in.vit.yearbook.Presenter.Main.MainActivityPresenter;
 import in.vit.yearbook.R;
 import in.vit.yearbook.View.NewUI.Credits.CreditsFragment;
 import in.vit.yearbook.View.NewUI.Dashboard.DashboardUpdatedFragment;
 import in.vit.yearbook.View.NewUI.Team.TeamFragment;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener, DashboardCommunicationInterface{
+public class MainActivity extends BaseActivity implements View.OnClickListener, DashboardCommunicationInterface, MainActivityInterface{
+
+
+    @Inject
+    MainActivityPresenter mainActivityPresenter;
 
     @BindView(R.id.new_activity_main_toolbar_main)
     ConstraintLayout toolbarMain ;
@@ -42,6 +55,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @BindView(R.id.new_activity_main_tab_dashboard)
     ImageButton ibTabDashboard;
 
+    private android.support.v4.app.Fragment dashboardFragment = null ;
     private android.support.v4.app.Fragment currentFragment = null ;
     private android.support.v4.app.Fragment nextFragment = null ;
 
@@ -53,16 +67,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         setContentView(R.layout.new_activity_main);
 
         ButterKnife.bind(this) ;
-        //setSupportActionBar(toolbarMain);
-        //getSupportActionBar().setTitle("");
+        ((AppController) this.getApplicationContext()).get().inject(this);
+
 
         currentFragment = new DashboardUpdatedFragment() ;
+        dashboardFragment = currentFragment ;
         addFragmentTransaction(currentFragment);
 
 
         ibTabCredits.setOnClickListener(this);
         ibTabDashboard.setOnClickListener(this);
         ibTabTeam.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        mainActivityPresenter.register(this);
+        super.onResume();
     }
 
     private void addFragmentTransaction(android.support.v4.app.Fragment currentFragment) {
@@ -218,13 +239,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void beginDownload(int year) {
-        Log.i("TAG", "beginDownload: " + year);
-
-
+        mainActivityPresenter.startDownloadSetup(year);
     }
 
     @Override
     public void checkDownloadState(int year) {
+        String fileName = Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/" + year + ".pdf";
+        File file = new File(fileName) ;
+        if (file.exists()){
+            Log.i("TAG", "File Downloaded: ");
+            ((DashboardUpdatedFragment)dashboardFragment).notifyStatus(0);
+        }else {
+            ((DashboardUpdatedFragment)dashboardFragment).notifyStatus(-1);
+        }
 
+    }
+
+    @Override
+    protected void onPause() {
+        mainActivityPresenter.unRegister();
+        super.onPause();
+    }
+
+    @Override
+    public void updateDownloadStatus(ProgressUpdateEvent progressUpdateEvent) {
+        if (dashboardFragment instanceof DashboardUpdatedFragment){
+            Log.i("TAG", "updateDownloadStatus: INSTANCE" );
+            ((DashboardUpdatedFragment)dashboardFragment)
+                    .updateDownloadingStatus(progressUpdateEvent.getYear(), progressUpdateEvent.getProgress());
+        }
     }
 }
