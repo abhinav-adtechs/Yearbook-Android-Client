@@ -1,6 +1,7 @@
 package in.vit.yearbook.Model.Utils;
 
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 
@@ -31,6 +32,22 @@ public final class AnimationUtils {
         inFromLeft.setFillEnabled(true);
         inFromLeft.setFillAfter(true);
         return inFromLeft;
+    }
+
+    public AlphaAnimation fadeInAnimation(){
+        AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f) ;
+        fadeIn.setDuration(700);
+        fadeIn.setFillEnabled(true);
+        fadeIn.setFillAfter(true);
+        return fadeIn ;
+    }
+
+    public AlphaAnimation fadeOutAnimation(){
+        AlphaAnimation fadeOut= new AlphaAnimation(1.0f, 0.0f) ;
+        fadeOut.setDuration(400);
+        fadeOut.setFillEnabled(true);
+        fadeOut.setFillAfter(true);
+        return fadeOut ;
     }
 
 

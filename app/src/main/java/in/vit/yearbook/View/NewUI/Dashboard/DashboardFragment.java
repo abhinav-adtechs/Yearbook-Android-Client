@@ -32,7 +32,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dd.CircularProgressButton;
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadLargeFileListener;
 import com.liulishuo.filedownloader.FileDownloader;
@@ -50,6 +49,7 @@ import in.vit.yearbook.View.OldUI.Dashboard.MainActivity;
 import in.vit.yearbook.View.OldUI.Preview.BookPreviewActivity;
 
 
+/*
 public class DashboardFragment extends BaseFragment implements View.OnClickListener{
 
     @BindView(R.id.new_fragment_dashboard_iv_cover)
@@ -308,8 +308,10 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
                     @Override
                     protected void progress(BaseDownloadTask task, long soFarBytes, long totalBytes) {
                         Double percent = Double.parseDouble(soFarBytes + "")/Double.parseDouble(totalBytes + "") ;
-                        /*ibDownload.setIndeterminateProgressMode(false);
-                        ibDownload.setProgress(percent.intValue());*/
+                        */
+/*ibDownload.setIndeterminateProgressMode(false);
+                        ibDownload.setProgress(percent.intValue());*//*
+
                         Log.i("TAG", "progress: " + task.getId() + " : " + soFarBytes + " : " + totalBytes );
                         notificationBuilder.setProgress((int)totalBytes, (int)soFarBytes, false).setContentText("Downloading") ;
                         notificationManager.notify(task.getId(), notificationBuilder.build());
@@ -453,3 +455,4 @@ public class DashboardFragment extends BaseFragment implements View.OnClickListe
         super.onPause();
     }
 }
+*/

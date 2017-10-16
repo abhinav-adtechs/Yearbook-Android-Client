@@ -16,12 +16,13 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import in.vit.yearbook.Model.Utils.Constants;
+import in.vit.yearbook.Presenter.Dashboard.DashboardCommunicationInterface;
 import in.vit.yearbook.R;
 import in.vit.yearbook.View.NewUI.Credits.CreditsFragment;
 import in.vit.yearbook.View.NewUI.Dashboard.DashboardUpdatedFragment;
 import in.vit.yearbook.View.NewUI.Team.TeamFragment;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity implements View.OnClickListener, DashboardCommunicationInterface{
 
     @BindView(R.id.new_activity_main_toolbar_main)
     ConstraintLayout toolbarMain ;
@@ -215,4 +216,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         ibTabTeam.setClickable(true);
     }
 
+    @Override
+    public void beginDownload(int year) {
+        Log.i("TAG", "beginDownload: " + year);
+
+
+    }
+
+    @Override
+    public void checkDownloadState(int year) {
+
+    }
 }

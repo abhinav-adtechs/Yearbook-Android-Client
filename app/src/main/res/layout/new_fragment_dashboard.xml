@@ -114,8 +114,9 @@
 
     <TextView
         android:id="@+id/new_fragment_dashboard_tv_click"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:textSize="17sp"
         android:textColor="@color/colorWhite"
         android:text="Click on the cover for download options"
@@ -123,14 +124,15 @@
         android:layout_marginTop="120dp"
         android:layout_marginBottom="122dp"
         app:layout_constraintBottom_toTopOf="@+id/new_fragment_dashboard_iv_cover"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="@+id/new_fragment_dashboard_iv_cover"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="@+id/new_fragment_dashboard_iv_cover"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         tools:layout_constraintTop_creator="1"
-        tools:layout_constraintBottom_creator="1" />
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintVertical_bias="0.514"
+        android:layout_marginRight="-70dp"
+        app:layout_constraintRight_toRightOf="@+id/new_fragment_dashboard_view"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/new_fragment_dashboard_view" />
 
     <Button
         android:id="@+id/new_fragment_dashboard_btn_download"
@@ -139,7 +141,7 @@
         android:layout_height="wrap_content"
 
         android:text="DOWNLOAD 75MB"
-        android:background="@drawable/btn_rounded_filled_rectangle"
+        android:background="@drawable/rectangle_tube_edgy"
         android:padding="8dp"
         android:textColor="@color/colorWhite"
         android:textAlignment="center"
@@ -155,7 +157,7 @@
         app:layout_constraintHorizontal_bias="0.88" />
 
     <Button
-        android:visibility="invisible"
+        android:visibility="gone"
         android:id="@+id/new_fragment_dashboard_btn_read"
         android:background="@drawable/rounded_rectangle_tube"
         android:textColor="@color/colorWhite"
@@ -172,6 +174,35 @@
         app:layout_constraintRight_toRightOf="@+id/new_fragment_dashboard_btn_download"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="@+id/new_fragment_dashboard_btn_download" />
+
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:id="@+id/new_fragment_dashboard_pb_download"
+        android:visibility="invisible"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:progress_unreached_color="#CCCCCC"
+        app:progress_reached_color="@color/ybBaseBlue"
+
+        app:progress_unreached_bar_height="1.75dp"
+        app:progress_reached_bar_height="3.5dp"
+
+        app:progress_text_size="14sp"
+        app:progress_text_color="#3498DB"
+        app:progress_text_offset="1dp"
+        app:progress_text_visibility="visible"
+
+
+        app:progress_max="100"
+        app:progress_current="80"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/new_fragment_dashboard_view"
+        android:layout_marginRight="16dp"
+        app:layout_constraintRight_toRightOf="@+id/new_fragment_dashboard_view"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/new_fragment_dashboard_iv_cover"
+        app:layout_constraintBottom_toBottomOf="@+id/new_fragment_dashboard_view"
+        android:layout_marginBottom="8dp" />
 
 
 </android.support.constraint.ConstraintLayout>
