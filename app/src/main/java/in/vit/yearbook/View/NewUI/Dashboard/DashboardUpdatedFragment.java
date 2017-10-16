@@ -206,6 +206,10 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
 
     @Override
     public void updateDownloadingStatus(int year, int progress) {
+
+        Log.i("TAG", "updateDownloadingStatus: Downloading..." );
+        morphingBtnDownload.setText("DOWNLOADING...");
+
         if (currentYear == year){
             nbpDownloadBar.setMax(100);
             nbpDownloadBar.setProgress(progress);
@@ -227,5 +231,10 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
         }
     }
 
-
+    @Override
+    public void scrollToYear(int year) {
+        Log.d("TAG", "scrollToYear() called with: position = [" + Math.abs(year-2017) + "]");
+        rvDashboardTopBook.smoothScrollToPosition(Math.abs(year-2017));
+        viewDownloadSettings();
+    }
 }

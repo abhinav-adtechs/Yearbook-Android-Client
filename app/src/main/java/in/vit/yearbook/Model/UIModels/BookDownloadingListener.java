@@ -7,57 +7,77 @@ import android.util.Log;
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadLargeFileListener;
 
+import org.greenrobot.eventbus.EventBus;
+
 
 public class BookDownloadingListener extends FileDownloadLargeFileListener {
 
-    private NotificationManager notificationManager ;
-    private NotificationCompat.Builder notificationBuilder ;
-    private int year ;
+    private static final String TAG = "TAG";
+    private int yearDownloading ;
+    private ProgressUpdateEvent progressUpdateEvent ;
 
-    public BookDownloadingListener(int year, NotificationManager notificationManager, NotificationCompat.Builder notificationBuilder) {
+    private NotificationManager notificationManager ;
+    private android.support.v7.app.NotificationCompat.Builder notificationBuilder ;
+
+    public BookDownloadingListener(int yearDownloading, NotificationManager notificationManager,
+                                   android.support.v7.app.NotificationCompat.Builder notificationBuilder){
+        this.yearDownloading = yearDownloading ;
+        progressUpdateEvent = new ProgressUpdateEvent(yearDownloading, 0) ;
         this.notificationManager = notificationManager ;
         this.notificationBuilder = notificationBuilder ;
-        this.year = year ;
+
     }
 
     @Override
     protected void pending(BaseDownloadTask task, long soFarBytes, long totalBytes) {
-        Log.i("TAG", "pending: ");
-        notificationBuilder.setProgress((int)totalBytes, (int)soFarBytes, false).setContentText("Download Pending") ;
-        notificationManager.notify(year, notificationBuilder.build());
+        Log.d(TAG, "pending() called with: task = [" + task + "], soFarBytes = [" + soFarBytes + "], totalBytes = [" + totalBytes + "]" );
+        progressUpdateEvent.setProgress(0);
+        progressUpdateEvent.setStatusString("Pending");
+        notificationBuilder.setProgress(100, progressUpdateEvent.getProgress(), false).setContentText(progressUpdateEvent.getStatusString()) ;
+        notificationManager.notify(progressUpdateEvent.getYear(), notificationBuilder.build());
+        EventBus.getDefault().post(progressUpdateEvent);
     }
 
     @Override
     protected void progress(BaseDownloadTask task, long soFarBytes, long totalBytes) {
-        Log.i("TAG", "progress: " + task.getId() + " : " + soFarBytes + " : " + totalBytes );
-        notificationBuilder.setProgress((int)totalBytes, (int)soFarBytes, false).setContentText("Downloading") ;
-        notificationManager.notify(year, notificationBuilder.build());
-
+        Log.d(TAG, "progress() called with: task = [" + task + "], soFarBytes = [" + soFarBytes + "], totalBytes = [" + totalBytes + "]  " + (int)(((float)soFarBytes/totalBytes)*100));
+        progressUpdateEvent.setProgress((int)(((float)soFarBytes/totalBytes)*100));
+        progressUpdateEvent.setStatusString("Downloading");
+        notificationBuilder.setProgress(100, progressUpdateEvent.getProgress(), false).setContentText(progressUpdateEvent.getStatusString()) ;
+        notificationManager.notify(progressUpdateEvent.getYear(), notificationBuilder.build());
+        EventBus.getDefault().post(progressUpdateEvent);
     }
 
     @Override
     protected void paused(BaseDownloadTask task, long soFarBytes, long totalBytes) {
-        Log.i("TAG", "paused: ");
-        notificationBuilder.setProgress((int)totalBytes, (int)soFarBytes, false).setContentText("Paused") ;
-        notificationManager.notify(year, notificationBuilder.build());
+        Log.d(TAG, "paused() called with: task = [" + task + "], soFarBytes = [" + soFarBytes + "], totalBytes = [" + totalBytes + "]");
+        progressUpdateEvent.setProgress((int)(((float)soFarBytes/totalBytes)*100));
+        progressUpdateEvent.setStatusString("Paused");
+        notificationBuilder.setProgress(100, progressUpdateEvent.getProgress(), false).setContentText(progressUpdateEvent.getStatusString()) ;
+        notificationManager.notify(progressUpdateEvent.getYear(), notificationBuilder.build());
+        EventBus.getDefault().post(progressUpdateEvent);
     }
 
     @Override
     protected void completed(BaseDownloadTask task) {
-        Log.i("TAG", "completed: ");
-        notificationBuilder.setProgress(0, 0, false).setContentText("Download Complete") ;
-        notificationManager.notify(year, notificationBuilder.build());
+        Log.d(TAG, "completed() called with: task = [" + task + "]");
+        progressUpdateEvent.setStatusString("Completed");
+        notificationBuilder.setProgress(100, progressUpdateEvent.getProgress(), false).setContentText(progressUpdateEvent.getStatusString()) ;
+        notificationManager.notify(progressUpdateEvent.getYear(), notificationBuilder.build());
+        EventBus.getDefault().post(progressUpdateEvent);
     }
 
     @Override
     protected void error(BaseDownloadTask task, Throwable e) {
-        Log.i("TAG", "error: " + e.getLocalizedMessage());
-        notificationBuilder.setProgress(0, 0, false).setContentText("Error Downloading") ;
-        notificationManager.notify(year, notificationBuilder.build());
+        Log.d(TAG, "error() called with: task = [" + task + "], e = [" + e + "]");
+        progressUpdateEvent.setStatusString("Error");
+        notificationBuilder.setProgress(100, progressUpdateEvent.getProgress(), false).setContentText(progressUpdateEvent.getStatusString()) ;
+        notificationManager.notify(progressUpdateEvent.getYear(), notificationBuilder.build());
+        EventBus.getDefault().post(progressUpdateEvent);
     }
 
     @Override
     protected void warn(BaseDownloadTask task) {
-        Log.d("TAG", "warn: ");
+        Log.d(TAG, "warn() called with: task = [" + task + "]");
     }
 }

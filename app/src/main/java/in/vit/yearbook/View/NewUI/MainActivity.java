@@ -1,11 +1,16 @@
 package in.vit.yearbook.View.NewUI;
 
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -13,6 +18,8 @@ import android.view.animation.ScaleAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.liulishuo.filedownloader.FileDownloader;
 
 import java.io.File;
 
@@ -61,6 +68,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private Integer currentState = Constants.STATE_DASHBOARD ;
 
+    private NotificationManager notificationManager ;
+    private NotificationCompat.Builder notificationBuilder ;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +93,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     protected void onResume() {
         mainActivityPresenter.register(this);
+
+        if (getIntent().hasExtra("year")){
+            ((DashboardUpdatedFragment)dashboardFragment).scrollToYear(getIntent().getIntExtra("year", 2017));
+        }
         super.onResume();
     }
 
@@ -239,7 +253,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void beginDownload(int year) {
-        mainActivityPresenter.startDownloadSetup(year);
+
+        FileDownloader.setup(this);
+        notificationManager =
+                (NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationBuilder = new NotificationCompat.Builder(this);
+        notificationBuilder.setContentTitle("Yearbook Rewind " + year)
+                .setContentText("Download in progress")
+                .setSmallIcon(R.mipmap.yearbook_logo);
+
+        Intent intent = new Intent(this, MainActivity.class) ;
+        intent.putExtra("year", year) ;
+
+        notificationBuilder.setContentIntent(PendingIntent.getActivity(this, 0,
+                intent, PendingIntent.FLAG_UPDATE_CURRENT)) ;
+
+        mainActivityPresenter.startDownloadSetup(year, notificationManager, notificationBuilder);
     }
 
     @Override
@@ -263,8 +292,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void updateDownloadStatus(ProgressUpdateEvent progressUpdateEvent) {
+
+
         if (dashboardFragment instanceof DashboardUpdatedFragment){
-            Log.i("TAG", "updateDownloadStatus: INSTANCE" );
             ((DashboardUpdatedFragment)dashboardFragment)
                     .updateDownloadingStatus(progressUpdateEvent.getYear(), progressUpdateEvent.getProgress());
         }

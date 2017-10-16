@@ -5,10 +5,12 @@ public class ProgressUpdateEvent {
 
     private int year ;
     private int progress ;
+    private String statusString ;
 
     public ProgressUpdateEvent(int year, int progress) {
         this.year = year;
         this.progress = progress;
+        this.statusString = "idle" ;
     }
 
     public int getYear() {
@@ -25,5 +27,13 @@ public class ProgressUpdateEvent {
 
     public void setProgress(int progress) {
         this.progress = progress;
+    }
+
+    public String getStatusString() {
+        return statusString;
+    }
+
+    public void setStatusString(String statusString) {
+        this.statusString = statusString;
     }
 }

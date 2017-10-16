@@ -16,7 +16,6 @@ import com.liulishuo.filedownloader.FileDownloader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import in.vit.yearbook.Model.UIModels.BookDownloadingListener;
 import in.vit.yearbook.Model.Utils.Constants;
 import in.vit.yearbook.R;
 import in.vit.yearbook.View.NewUI.BaseFragment;
