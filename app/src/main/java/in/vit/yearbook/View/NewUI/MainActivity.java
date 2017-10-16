@@ -88,15 +88,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         ibTabCredits.setOnClickListener(this);
         ibTabDashboard.setOnClickListener(this);
         ibTabTeam.setOnClickListener(this);
+
+        if (getIntent().hasExtra("year")){
+            ((DashboardUpdatedFragment)dashboardFragment).scrollToYear(getIntent().getIntExtra("year", 2017));
+        }
     }
 
     @Override
     protected void onResume() {
         mainActivityPresenter.register(this);
 
-        if (getIntent().hasExtra("year")){
-            ((DashboardUpdatedFragment)dashboardFragment).scrollToYear(getIntent().getIntExtra("year", 2017));
-        }
         super.onResume();
     }
 
@@ -293,10 +294,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void updateDownloadStatus(ProgressUpdateEvent progressUpdateEvent) {
 
+        Log.i("TAG", "updateDownloadStatus: " + progressUpdateEvent.getProgress() + " : " + progressUpdateEvent.getStatusString());
 
-        if (dashboardFragment instanceof DashboardUpdatedFragment){
+        if (currentFragment instanceof DashboardUpdatedFragment){
+
+
             ((DashboardUpdatedFragment)dashboardFragment)
                     .updateDownloadingStatus(progressUpdateEvent.getYear(), progressUpdateEvent.getProgress());
+
+
+            if (progressUpdateEvent.getStatusString() == "Completed"){
+                ((DashboardUpdatedFragment)dashboardFragment).notifyStatus(0);
+            }
         }
     }
 }

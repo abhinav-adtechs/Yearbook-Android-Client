@@ -62,7 +62,8 @@ public class BookDownloadingListener extends FileDownloadLargeFileListener {
     protected void completed(BaseDownloadTask task) {
         Log.d(TAG, "completed() called with: task = [" + task + "]");
         progressUpdateEvent.setStatusString("Completed");
-        notificationBuilder.setProgress(100, progressUpdateEvent.getProgress(), false).setContentText(progressUpdateEvent.getStatusString()) ;
+        progressUpdateEvent.setProgress(100);
+        notificationBuilder.setProgress(100, 100, false).setContentText(progressUpdateEvent.getStatusString()) ;
         notificationManager.notify(progressUpdateEvent.getYear(), notificationBuilder.build());
         EventBus.getDefault().post(progressUpdateEvent);
     }

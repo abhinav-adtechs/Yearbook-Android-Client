@@ -46,7 +46,7 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
     NumberProgressBar nbpDownloadBar ;
 
     private DashYearAdapter dashYearAdapter ;
-    private boolean showStateSelected = false ;
+    private boolean showingDownloadState = false ;
 
     private AnimationUtils animationUtils ;
     private static final int EXTERNAL_STORAGE_PERMISSION_CONSTANT = 101;
@@ -109,8 +109,8 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
 
     private void setBooks(int position) {
 
-        if (showStateSelected){
-            Log.i("TAG", "showStateSelected: " + position);
+        if (showingDownloadState){
+            Log.i("TAG", "showingDownloadState: " + position);
             hideDownloadSettings();
         }
 
@@ -136,7 +136,7 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
 
         switch (v.getId()){
             case R.id.new_fragment_dashboard_iv_cover:
-                if (!showStateSelected){
+                if (!showingDownloadState){
                     mainActivity.checkDownloadState(currentYear);
                     viewDownloadSettings();
                 }else {
@@ -165,7 +165,7 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
 
     private void viewDownloadSettings(){
         ivCoverPhoto.startAnimation(animationUtils.slideLeftAnimation());
-        showStateSelected = !showStateSelected ;
+        showingDownloadState = true ;
         morphingBtnDownload.startAnimation(animationUtils.fadeInAnimation());
         nbpDownloadBar.startAnimation(animationUtils.fadeInAnimation());
 
@@ -173,7 +173,7 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
 
     private void hideDownloadSettings(){
         ivCoverPhoto.startAnimation(animationUtils.slideRightAnimation());
-        showStateSelected = !showStateSelected ;
+        showingDownloadState = false ;
         morphingBtnDownload.startAnimation(animationUtils.fadeOutAnimation());
         nbpDownloadBar.startAnimation(animationUtils.fadeOutAnimation());
 
