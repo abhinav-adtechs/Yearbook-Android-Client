@@ -194,7 +194,7 @@
 
 
         app:progress_max="100"
-        app:progress_current="80"
+        app:progress_current="0"
         android:layout_marginLeft="16dp"
         app:layout_constraintLeft_toLeftOf="@+id/new_fragment_dashboard_view"
         android:layout_marginRight="16dp"

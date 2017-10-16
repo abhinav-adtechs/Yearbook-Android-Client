@@ -89,9 +89,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         ibTabDashboard.setOnClickListener(this);
         ibTabTeam.setOnClickListener(this);
 
-        if (getIntent().hasExtra("year")){
+        /*if (getIntent().hasExtra("year")){
             ((DashboardUpdatedFragment)dashboardFragment).scrollToYear(getIntent().getIntExtra("year", 2017));
-        }
+        }*/
     }
 
     @Override

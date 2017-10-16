@@ -1,6 +1,8 @@
 package in.vit.yearbook.View.NewUI.Dashboard;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -38,10 +40,13 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
 
     @BindView(R.id.new_fragment_dashboard_rv_year)
     RecyclerView rvDashboardTopBook;
+
     @BindView(R.id.new_fragment_dashboard_iv_cover)
     ImageView ivCoverPhoto ;
+
     @BindView(R.id.new_fragment_dashboard_btn_download)
     Button morphingBtnDownload;
+
     @BindView(R.id.new_fragment_dashboard_pb_download)
     NumberProgressBar nbpDownloadBar ;
 
@@ -53,18 +58,18 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
     private Integer currentYear = Integer.parseInt("2017") ;
 
     private MainActivity mainActivity ;
+    private Context context ;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.new_fragment_dashboard, container, false) ;
-        ButterKnife.bind(this, view) ;
         mainActivity = (MainActivity) this.getActivity() ;
+        ButterKnife.bind(this, view) ;
         animationUtils = new AnimationUtils() ;
         ivCoverPhoto.setOnClickListener(this);
         morphingBtnDownload.setOnClickListener(this);
         setupRv();
-
         return view ;
     }
 
@@ -76,7 +81,7 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
                 rvDashboardTopBook.smoothScrollToPosition(pos);
             }
         }) ;
-        final RecyclerView.LayoutManager layoutManager = new CenterZoomLayoutManager(this.getActivity().getApplicationContext(),
+        final RecyclerView.LayoutManager layoutManager = new CenterZoomLayoutManager(context.getApplicationContext(),
                 LinearLayoutManager.HORIZONTAL, false) ;
         rvDashboardTopBook.setLayoutManager(layoutManager);
         rvDashboardTopBook.setAdapter(dashYearAdapter);
@@ -105,6 +110,13 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
             }
         });
 
+    }
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        this.context = activity ;
     }
 
     private void setBooks(int position) {
@@ -144,11 +156,12 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
                 }
                 break;
             case R.id.new_fragment_dashboard_btn_download:
+                Log.i("TAG", "onClick: " + morphingBtnDownload.getText());
                 if (ActivityCompat.checkSelfPermission(
-                        getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                        context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
                     ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, EXTERNAL_STORAGE_PERMISSION_CONSTANT);
                 }else if (morphingBtnDownload.getText() == "OPEN BOOK"){
-                    Intent intent = new Intent(this.getActivity(), BookPreviewActivity.class) ;
+                    Intent intent = new Intent(context, BookPreviewActivity.class) ;
                     String fileName = Environment.getExternalStorageDirectory().toString() + "/YearbookVIT/" + currentYear + ".pdf";
                     Log.i("TAG", "onClick: " + fileName);
                     intent.putExtra("fileName", fileName) ;
@@ -184,9 +197,11 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
         Log.d("TAG", "notifyStatus() called with: status = [" + status + "]");
         switch (status){
             case 0:
+                Log.i("TAG", "notifyStatus: case 0"  );
                 nbpDownloadBar.setMax(100);
                 nbpDownloadBar.setProgress(100);
                 morphingBtnDownload.setText("OPEN BOOK");
+                Log.i("TAG", "notifyStatus: " + morphingBtnDownload.getText() + " : " + nbpDownloadBar.getProgress());
                 break;
             case -1:
                 nbpDownloadBar.setMax(100);
