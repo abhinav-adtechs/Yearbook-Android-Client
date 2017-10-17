@@ -1,4 +1,14 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 apply plugin: 'kotlin-android'
 
 android {
@@ -32,7 +42,7 @@ android {
     android.applicationVariants.all { variant ->
         variant.outputs.each { output ->
             output.versionCodeOverride =
-                    project.ext.versionCodes.get(output.getFilter(com.android.build.OutputFile.ABI), 0) * 10000 + android.defaultConfig.versionCode
+                    project.ext.versionCodes.get(output.getFilter(com.android.build.OutputFile.ABI), 0) * 1000 + android.defaultConfig.versionCode
         }
     }
 }
@@ -65,10 +75,14 @@ dependencies {
 
     compile 'com.liulishuo.filedownloader:library:1.6.6'
     compile 'com.daimajia.numberprogressbar:library:1.4@aar'
+    compile('com.crashlytics.sdk.android:crashlytics:2.7.0@aar') {
+        transitive = true;
+    }
 
 }
 repositories {
     mavenCentral()
+    maven { url 'https://maven.fabric.io/public' }
 }
 
 apply plugin: 'com.google.gms.google-services'
