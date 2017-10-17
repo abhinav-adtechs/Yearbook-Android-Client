@@ -20,7 +20,7 @@ android {
         }
     }
 
-    splits {
+    /*splits {
         abi {
             enable true
             reset()
@@ -34,7 +34,7 @@ android {
             output.versionCodeOverride =
                     project.ext.versionCodes.get(output.getFilter(com.android.build.OutputFile.ABI), 0) * 10000 + android.defaultConfig.versionCode
         }
-    }
+    }*/
 }
 
 dependencies {
