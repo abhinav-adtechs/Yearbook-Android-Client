@@ -118,7 +118,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .setCustomAnimations(R.anim.fade_in_slow, R.anim.fade_out_slow)
-                    .addToBackStack(currentFragment.getClass().toString())
                     .replace(R.id.new_activity_main_fragment_frame, nextFragment)
                     .commit();
 

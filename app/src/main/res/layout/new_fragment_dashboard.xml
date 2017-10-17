@@ -107,10 +107,12 @@
         app:layout_constraintRight_toRightOf="@+id/new_fragment_dashboard_view"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintBottom_creator="1"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintTop_toTopOf="@+id/new_fragment_dashboard_view"
         android:layout_marginTop="8dp"
-        app:layout_constraintVertical_bias="0.65" />
+        app:layout_constraintVertical_bias="0.5"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
 
     <TextView
         android:id="@+id/new_fragment_dashboard_tv_click"

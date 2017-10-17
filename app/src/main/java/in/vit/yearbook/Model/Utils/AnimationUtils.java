@@ -12,7 +12,7 @@ public final class AnimationUtils {
     public Animation slideLeftAnimation() {
         Animation inFromLeft = new TranslateAnimation(
                 Animation.RELATIVE_TO_SELF, 0.0f,
-                Animation.RELATIVE_TO_SELF, -0.45f,
+                Animation.RELATIVE_TO_SELF, -0.4f,
                 Animation.RELATIVE_TO_SELF, 0.0f,
                 Animation.RELATIVE_TO_SELF, 0.0f);
         inFromLeft.setDuration(300);
@@ -24,7 +24,7 @@ public final class AnimationUtils {
 
     public Animation slideRightAnimation() {
         Animation inFromLeft = new TranslateAnimation(
-                Animation.RELATIVE_TO_SELF, -0.45f,
+                Animation.RELATIVE_TO_SELF, -0.4f,
                 Animation.RELATIVE_TO_SELF, 0.0f,
                 Animation.RELATIVE_TO_SELF, 0.0f,
                 Animation.RELATIVE_TO_SELF, 0.0f);
