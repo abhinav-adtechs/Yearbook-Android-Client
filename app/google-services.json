@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "524686515424",
+    "firebase_url": "https://yearbook-android.firebaseio.com",
+    "project_id": "yearbook-android",
+    "storage_bucket": "yearbook-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:524686515424:android:30968791b4b9de1a",
+        "android_client_info": {
+          "package_name": "in.vit.yearbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "524686515424-2m472cmq2fmq251qfpbga77jo9q3f5af.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.vit.yearbook",
+            "certificate_hash": "d78c87e6e96340a51787285201dd0d7590ec76cc"
+          }
+        },
+        {
+          "client_id": "524686515424-0smln1j3d038hc3e2leqjuhijkvppdd5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT0EaRCaHRQtZndh6wVkljBPBI_HpNV4o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "524686515424-0smln1j3d038hc3e2leqjuhijkvppdd5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
