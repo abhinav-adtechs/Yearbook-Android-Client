@@ -20,7 +20,7 @@ android {
         }
     }
 
-    /*splits {
+    splits {
         abi {
             enable true
             reset()
@@ -28,13 +28,13 @@ android {
             universalApk false
         }
     }
-    project.ext.versionCodes = [ 'armeabi-v7a': 6, 'arm64-v8a': 7, 'mips': 8, 'x86': 9, 'x86_64': 10]
+    project.ext.versionCodes = ['armeabi-v7a': 6, 'arm64-v8a': 7, 'mips': 8, 'x86': 9, 'x86_64': 10]
     android.applicationVariants.all { variant ->
         variant.outputs.each { output ->
             output.versionCodeOverride =
                     project.ext.versionCodes.get(output.getFilter(com.android.build.OutputFile.ABI), 0) * 10000 + android.defaultConfig.versionCode
         }
-    }*/
+    }
 }
 
 dependencies {
@@ -51,6 +51,7 @@ dependencies {
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.google.firebase:firebase-messaging:10.0.1'
 
     /*Architecture Needs*/
     compile 'com.jakewharton:butterknife:8.6.0'
@@ -69,3 +70,5 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+apply plugin: 'com.google.gms.google-services'
