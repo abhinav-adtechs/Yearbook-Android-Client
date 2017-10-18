@@ -3,7 +3,7 @@
     android:id="@+id/new_item_rv_team_tv"
     android:text="Abhinav Das"
     android:textColor="@color/colorWhite"
-    android:textSize="18sp"
+    android:textSize="@dimen/new_item_rv_team_text_size"
     android:layout_margin="4dp"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">

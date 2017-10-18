@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -11,7 +10,7 @@
             android:layout_margin="8dp"
             android:id="@+id/new_activity_main_toolbar_main"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:background="@drawable/rounded_border_action_bar"
             android:layout_marginRight="8dp"
             app:layout_constraintRight_toRightOf="parent"
@@ -24,7 +23,7 @@
                 android:id="@+id/new_activity_main_fragment_title"
                 android:text="Dashboard"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:textColor="@color/colorWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -43,8 +42,8 @@
             <ImageView
                 app:srcCompat="@mipmap/yb_logo"
                 android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:id="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="8dp"
@@ -60,7 +59,7 @@
             <TextView
                 android:text="Yearbook "
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 android:textColor="@color/colorWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -113,7 +112,7 @@
             app:srcCompat="@drawable/ic_people_outline_white_24px"
             android:background="@android:color/transparent"
             android:layout_gravity="start|center_vertical"
-            android:padding="16dp"
+            android:padding="@dimen/new_activity_main_bottom_padding"
             android:layout_marginStart="16dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -124,7 +123,7 @@
             app:srcCompat="@drawable/ic_dashboard_white_24px"
             android:background="@android:color/transparent"
             android:layout_gravity="center|center_vertical"
-            android:padding="16dp"
+            android:padding="@dimen/new_activity_main_bottom_padding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -133,8 +132,8 @@
             app:srcCompat="@drawable/ic_info_outline_white_24px"
             android:background="@android:color/transparent"
             android:layout_gravity="end|center_vertical"
-            android:layout_marginEnd="16dp"
-            android:padding="16dp"
+            android:layout_marginEnd="5dp"
+            android:padding="@dimen/new_activity_main_bottom_padding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </FrameLayout>

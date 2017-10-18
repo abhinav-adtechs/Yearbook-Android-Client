@@ -9,8 +9,8 @@
     android:layout_height="match_parent">
 
     <View
-        android:layout_width="120dp"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_width="@dimen/new_fragment_dashboard_rv_year_width"
+        android:layout_height="@dimen/new_fragment_dashboard_rv_year_height"
         android:layout_margin="16dp"
         android:background="@drawable/rounded_rectangle_tube"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -27,7 +27,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/new_fragment_dashboard_rv_year"
         android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="@dimen/new_fragment_dashboard_rv_year_height"
         android:orientation="horizontal"
         android:paddingStart="146dp"
         android:paddingEnd="146dp"
@@ -38,7 +38,7 @@
         android:layout_marginRight="16dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/new_fragment_dashboard_rv_margin_top"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintHorizontal_bias="0.0"
@@ -96,8 +96,8 @@
     <ImageView
         android:visibility="visible"
         android:id="@+id/new_fragment_dashboard_iv_cover"
-        android:layout_width="200dp"
-        android:layout_height="250dp"
+        android:layout_width="@dimen/new_fragment_dashboard_book_cover_width"
+        android:layout_height="145dp"
         app:srcCompat="@drawable/yb2017_cover"
         android:background="@drawable/rectangle_flat_views"
         android:padding="7dp"
@@ -119,7 +119,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textSize="17sp"
+        android:textSize="@dimen/new_fragment_dashboard_download_title_text_size"
         android:textColor="@color/colorWhite"
         android:text="Click on the cover for download options"
         app:layout_constraintTop_toTopOf="@+id/new_fragment_dashboard_view"
@@ -142,6 +142,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:textSize="@dimen/new_fragment_dashboard_download_btn_text_size"
         android:text="DOWNLOAD 75MB"
         android:background="@drawable/rectangle_tube_edgy"
         android:padding="8dp"
@@ -174,7 +175,7 @@
         app:progress_unreached_bar_height="1.75dp"
         app:progress_reached_bar_height="3.5dp"
 
-        app:progress_text_size="14sp"
+        app:progress_text_size="@dimen/new_fragment_dashboard_download_btn_text_size"
         app:progress_text_color="@color/colorWhite"
         app:progress_text_offset="1dp"
         app:progress_text_visibility="visible"

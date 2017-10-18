@@ -2,4 +2,27 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="new_activity_main_actionbar_height">65dp</dimen>
+    <dimen name="new_activity_main_actionbar_text_size">20sp</dimen>
+    <dimen name="new_activity_main_actionbar_image_size">45dp</dimen>
+    <dimen name="new_activity_main_bottom_padding">16dp</dimen>
+
+    <dimen name="new_fragment_dashboard_rv_margin_top">16dp</dimen>
+    <dimen name="new_fragment_dashboard_rv_year_height">53dp</dimen>
+    <dimen name="new_fragment_dashboard_rv_year_width">120dp</dimen>
+    <dimen name="new_fragment_dashboard_download_title_text_size">17dp</dimen>
+    <dimen name="new_fragment_dashboard_download_btn_text_size">14dp</dimen>
+    <dimen name="new_fragment_dashboard_book_cover_height">250dp</dimen>
+    <dimen name="new_fragment_dashboard_book_cover_width">200dp</dimen>
+    <dimen name="new_fragment_dashboard_progressbar_unreached">1.75dp</dimen>
+    <dimen name="new_fragment_dashboard_progressbar_reached">3.5dp</dimen>
+
+    <dimen name="new_item_rv_team_text_size">18sp</dimen>
+    <dimen name="new_fragment_team_side_width">90dp</dimen>
+    <dimen name="new_fragment_team_images_margin">16dp</dimen>
+
+    <dimen name="new_item_rv_year_text_size">22dp</dimen>
+    <dimen name="new_item_rv_year_margin_end">64dp</dimen>
+
 </resources>

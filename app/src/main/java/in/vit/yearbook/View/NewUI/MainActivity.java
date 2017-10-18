@@ -209,7 +209,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void scaleUpDashboard() {
-        ibTabDashboard.setImageDrawable(getResources().getDrawable(R.drawable.ic_dashboard_white_24px));
+        ibTabDashboard.setImageDrawable(getResources().getDrawable(R.drawable.ic_group_black_24px));
         ibTabDashboard.setAlpha(1.0f);
         ScaleAnimation anim = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         anim.setFillEnabled(true);
@@ -221,7 +221,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void scaleDownDashboard() {
-        ibTabDashboard.setImageDrawable(getResources().getDrawable(R.drawable.ic_dashboard_white_24px));
+        ibTabDashboard.setImageDrawable(getResources().getDrawable(R.drawable.ic_group_black_24px));
         ibTabDashboard.setAlpha(0.5f);
         ScaleAnimation anim = new ScaleAnimation(1.2f, 1.0f, 1.2f, 1.0f, Animation.RELATIVE_TO_SELF,0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         anim.setFillEnabled(true);
@@ -232,7 +232,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void scaleUpTeam() {
-        ibTabTeam.setImageDrawable(getResources().getDrawable(R.drawable.ic_group_black_24px));
+        ibTabTeam.setImageDrawable(getResources().getDrawable(R.drawable.ic_group_white_24px));
         ScaleAnimation anim = new ScaleAnimation(1.0f, 1.2f, 1.0f, 1.2f, Animation.RELATIVE_TO_SELF,0.0f, Animation.RELATIVE_TO_SELF, 0.5f);
         anim.setFillEnabled(true);
         anim.setFillAfter(true);
