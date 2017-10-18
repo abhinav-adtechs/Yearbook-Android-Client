@@ -48,7 +48,7 @@
     <View
         android:id="@+id/solid_white_up"
         android:layout_width="100dp"
-        android:layout_height="5dp"
+        android:layout_height="4dp"
         android:layout_alignParentTop="true"
         android:background="#DDDDDD"
         android:visibility="visible"
@@ -152,30 +152,15 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
 
-        app:layout_constraintBottom_toTopOf="@+id/new_fragment_dashboard_btn_read"
         app:layout_constraintTop_toTopOf="@+id/new_fragment_dashboard_iv_cover"
         app:layout_constraintLeft_toLeftOf="@+id/new_fragment_dashboard_view"
         app:layout_constraintRight_toRightOf="@+id/new_fragment_dashboard_view"
-        app:layout_constraintHorizontal_bias="0.88" />
-
-    <Button
-        android:visibility="gone"
-        android:id="@+id/new_fragment_dashboard_btn_read"
-        android:background="@drawable/rounded_rectangle_tube"
-        android:textColor="@color/colorWhite"
-        android:text="OPEN BOOK"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/new_fragment_dashboard_btn_download"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        app:layout_constraintHorizontal_bias="0.881"
+        android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/new_fragment_dashboard_iv_cover"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="@+id/new_fragment_dashboard_btn_download"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/new_fragment_dashboard_btn_download" />
+        android:layout_marginBottom="8dp" />
+
+
 
     <com.daimajia.numberprogressbar.NumberProgressBar
         android:id="@+id/new_fragment_dashboard_pb_download"

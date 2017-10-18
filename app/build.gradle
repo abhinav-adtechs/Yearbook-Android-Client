@@ -4,7 +4,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'io.fabric.tools:gradle:1.+'
+        classpath 'io.fabric.tools:gradle:1.24.3'
     }
 }
 apply plugin: 'com.android.application'
@@ -30,7 +30,7 @@ android {
         }
     }
 
-    splits {
+    /*splits {
         abi {
             enable true
             reset()
@@ -38,13 +38,13 @@ android {
             universalApk false
         }
     }
-    project.ext.versionCodes = ['armeabi-v7a': 6, 'arm64-v8a': 7, 'mips': 8, 'x86': 9, 'x86_64': 10]
+    project.ext.versionCodes = ['armeabi-v7a': 5, 'arm64-v8a': 6, 'mips': 7, 'x86': 8, 'x86_64': 9]
     android.applicationVariants.all { variant ->
         variant.outputs.each { output ->
             output.versionCodeOverride =
-                    project.ext.versionCodes.get(output.getFilter(com.android.build.OutputFile.ABI), 0) * 1000 + android.defaultConfig.versionCode
+                    project.ext.versionCodes.get(output.getFilter(com.android.build.OutputFile.ABI), 0) * 10000 + android.defaultConfig.versionCode
         }
-    }
+    }*/
 }
 
 dependencies {
