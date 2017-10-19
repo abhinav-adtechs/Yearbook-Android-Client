@@ -26,5 +26,6 @@
     <dimen name="new_item_rv_year_text_size">22dp</dimen>
     <dimen name="new_item_rv_year_margin_end">64dp</dimen>
 
+    <dimen name="splash_screen_video_height">730dp</dimen>
 
 </resources>

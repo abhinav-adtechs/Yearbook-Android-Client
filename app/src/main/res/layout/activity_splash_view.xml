@@ -10,7 +10,7 @@
     <SurfaceView
         android:id="@+id/activity_splash_view_videoview"
         android:layout_width="0dp"
-        android:layout_height="600dp"
+        android:layout_height="@dimen/splash_screen_video_height"
         android:layout_gravity="center"
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintRight_creator="1"

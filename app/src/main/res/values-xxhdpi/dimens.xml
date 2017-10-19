@@ -12,7 +12,7 @@
     <dimen name="new_fragment_dashboard_rv_year_height">53dp</dimen>
     <dimen name="new_fragment_dashboard_rv_year_width">120dp</dimen>
     <dimen name="new_fragment_dashboard_download_title_text_size">17dp</dimen>
-    <dimen name="new_fragment_dashboard_download_btn_text_size">14dp</dimen>
+    <dimen name="new_fragment_dashboard_download_btn_text_size">12dp</dimen>
     <dimen name="new_fragment_dashboard_book_cover_height">250dp</dimen>
     <dimen name="new_fragment_dashboard_book_cover_width">200dp</dimen>
     <dimen name="new_fragment_dashboard_progressbar_unreached">1.75dp</dimen>
@@ -25,5 +25,7 @@
     <dimen name="new_both_rv_padding_start_end">146dp</dimen>
     <dimen name="new_item_rv_year_text_size">22dp</dimen>
     <dimen name="new_item_rv_year_margin_end">64dp</dimen>
+
+    <dimen name="splash_screen_video_height">600dp</dimen>
 
 </resources>
