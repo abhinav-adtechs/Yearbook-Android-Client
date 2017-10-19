@@ -10,7 +10,7 @@
             android:layout_margin="8dp"
             android:id="@+id/new_activity_main_toolbar_main"
             android:layout_width="0dp"
-            android:layout_height="45dp"
+            android:layout_height="@dimen/new_activity_main_actionbar_height"
             android:background="@drawable/rounded_border_action_bar"
             android:layout_marginRight="8dp"
             app:layout_constraintRight_toRightOf="parent"
@@ -23,7 +23,7 @@
                 android:id="@+id/new_activity_main_fragment_title"
                 android:text="Dashboard"
                 android:textStyle="bold"
-                android:textSize="14sp"
+                android:textSize="@dimen/new_activity_main_actionbar_text_size"
                 android:textColor="@color/colorWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,8 +42,8 @@
             <ImageView
                 app:srcCompat="@mipmap/yb_logo"
                 android:layout_gravity="center"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/new_activity_main_actionbar_image_size"
+                android:layout_height="@dimen/new_activity_main_actionbar_image_size"
                 android:id="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="8dp"
@@ -59,7 +59,7 @@
             <TextView
                 android:text="Yearbook "
                 android:textStyle="bold"
-                android:textSize="14sp"
+                android:textSize="@dimen/new_activity_main_actionbar_text_size"
                 android:textColor="@color/colorWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
 
         <ImageButton
             android:id="@+id/new_activity_main_tab_dashboard"
-            app:srcCompat="@drawable/ic_dashboard_white_24px"
+            app:srcCompat="@drawable/ic_dashboard"
             android:background="@android:color/transparent"
             android:layout_gravity="center|center_vertical"
             android:padding="@dimen/new_activity_main_bottom_padding"
