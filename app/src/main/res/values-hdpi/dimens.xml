@@ -21,6 +21,7 @@
     <dimen name="new_fragment_team_side_width">70dp</dimen>
     <dimen name="new_fragment_team_images_margin">8dp</dimen>
 
+    <dimen name="new_both_rv_padding_start_end">146dp</dimen>
     <dimen name="new_item_rv_year_text_size">13dp</dimen>
     <dimen name="new_item_rv_year_margin_end">24dp</dimen>
 

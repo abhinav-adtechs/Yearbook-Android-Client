@@ -39,7 +39,7 @@ public class CreditsFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.new_fragment_credits, container, false) ;
         ButterKnife.bind(this, view) ;
 
-        tvDeveloped.setText("Designed and Developed with " + getEmojiByUnicode(0x2764) + " by Yearbook Team");
+        tvDeveloped.setText("Designed and Developed with " + getEmojiByUnicode(0x2764) + " by Ajay Kumar and Abhinav Das");
         return view ;
     }
 
