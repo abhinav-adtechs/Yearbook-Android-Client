@@ -105,7 +105,11 @@ public class DashboardUpdatedFragment extends BaseFragment implements View.OnCli
                     View centerView = snapHelper.findSnapView(layoutManager);
                     int pos = layoutManager.getPosition(centerView);
 
-                    setBooks(pos) ;
+                    try{
+                        setBooks(pos) ;
+                    }catch (IllegalStateException ise){
+                        ise.printStackTrace();
+                    }
                 }
             }
         });
