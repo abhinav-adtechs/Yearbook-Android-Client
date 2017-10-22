@@ -115,7 +115,7 @@ public class SplashActivity extends BaseActivity implements SurfaceHolder.Callba
 
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-
+        mediaPlayer.setDisplay(surfaceHolder);
     }
 
     @Override

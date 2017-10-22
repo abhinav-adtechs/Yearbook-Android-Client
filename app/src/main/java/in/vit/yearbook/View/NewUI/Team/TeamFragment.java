@@ -64,7 +64,7 @@ public class TeamFragment extends BaseFragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.new_fragment_team, container, false) ;
+        View view = inflater.inflate(R.layout.testing_activity_test, container, false) ;
         ButterKnife.bind(this, view) ;
 
         teamMembersAdapter = new TeamMembersAdapter(teamMembersList) ;
