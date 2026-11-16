@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-label="Yearbook VIT — Browse, download and read VIT's yearbooks on Android">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070a12"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="160" cy="40" r="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F5BB4B" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#F5BB4B" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="1180" cy="360" r="560" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3A86C8" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#3A86C8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#F5BB4B"/>
+    </linearGradient>
+    <linearGradient id="motif" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F5BB4B"/>
+      <stop offset="1" stop-color="#3A86C8"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.045"/>
+    </pattern>
+    <clipPath id="card"><rect width="1280" height="360" rx="28"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#card)">
+    <rect width="1280" height="360" fill="url(#bg)"/>
+    <rect width="1280" height="360" fill="url(#grid)"/>
+    <rect width="1280" height="360" fill="url(#glowA)">
+      <animate attributeName="opacity" values="0.75;1;0.75" dur="7s" repeatCount="indefinite"/>
+    </rect>
+    <rect width="1280" height="360" fill="url(#glowB)"/>
+
+    <!-- MOTIF: open yearbook with a bookmark ribbon and a download progress bar -->
+    <g id="motif-group" fill="none" stroke="url(#motif)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+      <path d="M1030 132 C 990 112 935 108 888 122 L 888 262 C 935 250 990 254 1030 274 Z" fill="#ffffff" fill-opacity="0.03"/>
+      <path d="M1030 132 C 1070 112 1125 108 1172 122 L 1172 262 C 1125 250 1070 254 1030 274 Z" fill="#ffffff" fill-opacity="0.03"/>
+      <path d="M872 134 L 872 276 C 930 264 990 268 1030 290 C 1070 268 1130 264 1188 276 L 1188 134" stroke-opacity="0.45"/>
+      <path d="M1030 132 L 1030 274" stroke="#C9A55A" stroke-opacity="0.8"/>
+      <path d="M906 154 C 942 145 984 147 1014 160" stroke-opacity="0.55"/>
+      <path d="M906 180 C 942 171 984 173 1014 186" stroke-opacity="0.45"/>
+      <path d="M906 206 C 942 197 984 199 1014 212" stroke-opacity="0.35"/>
+      <path d="M906 232 C 942 223 984 225 1014 238" stroke-opacity="0.25"/>
+      <path d="M1046 160 C 1076 147 1118 145 1154 154" stroke-opacity="0.55"/>
+      <path d="M1046 186 C 1076 173 1118 171 1154 180" stroke-opacity="0.45"/>
+      <path d="M1046 212 C 1076 199 1118 197 1154 206" stroke-opacity="0.35"/>
+      <path d="M1046 238 C 1076 225 1118 223 1154 232" stroke-opacity="0.25"/>
+      <path d="M1124 113 L 1124 162 L 1112 151 L 1100 162 L 1100 116" fill="#F5BB4B" fill-opacity="0.85" stroke="#F5BB4B"/>
+      <circle cx="1030" cy="70" r="24" stroke-opacity="0.6"/>
+      <path d="M1030 58 L 1030 82 M 1020 73 L 1030 83 L 1040 73"/>
+      <path d="M892 314 L 1168 314" stroke="#ffffff" stroke-opacity="0.18" stroke-width="6"/>
+      <path d="M892 314 L 1080 314" stroke="#F5BB4B" stroke-width="6"/>
+    </g>
+  </g>
+
+  <text x="80" y="168" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="80" font-weight="800" letter-spacing="-2" fill="url(#title)">Yearbook VIT</text>
+  <text x="84" y="220" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="27" font-weight="500" fill="#cbd5e1">Browse, download &amp; read VIT's yearbooks on Android</text>
+
+  <!-- CHIPS: one <g> per chip; width = chars*10.85 + 32; 14px gap between chips -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" fill="#e2e8f0">
+    <g transform="translate(84 256)">
+      <rect width="184" height="38" rx="19" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.16"/>
+      <text x="16" y="25">Android · Java</text>
+    </g>
+    <g transform="translate(282 256)">
+      <rect width="184" height="38" rx="19" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.16"/>
+      <text x="16" y="25">MVP + Dagger 2</text>
+    </g>
+    <g transform="translate(480 256)">
+      <rect width="140" height="38" rx="19" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.16"/>
+      <text x="16" y="25">PDF reader</text>
+    </g>
+    <g transform="translate(634 256)">
+      <rect width="75" height="38" rx="19" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.16"/>
+      <text x="16" y="25">2017</text>
+    </g>
+  </g>
+
+  <rect x="0.5" y="0.5" width="1279" height="359" rx="28" fill="none" stroke="#ffffff" stroke-opacity="0.1"/>
+</svg>
